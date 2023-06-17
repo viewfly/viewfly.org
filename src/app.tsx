@@ -1,28 +1,15 @@
-import { Banner } from './components/banner/banner'
 import { Header } from './components/header/header'
+// import { Home } from './pages/home/home'
+import { Guide } from './pages/guide/guide'
+import './assets/doc.scss'
 
 export function App() {
   return () => {
     return (
       <>
         <Header/>
-        <Banner/>
-        <div class="container text-center">
-          <div class="row">
-            <div class="col">
-              1 of 3
-            </div>
-            <div class="col">
-              2 of 3
-            </div>
-            <div class="col">
-              3 of 3
-            </div>
-            <div class="col">
-              3 of 3
-            </div>
-          </div>
-        </div>
+        {/*<Home/>*/}
+        <Guide/>
       </>
     )
   }

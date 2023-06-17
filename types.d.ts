@@ -7,3 +7,8 @@ declare module "*.svg" {
   const mod: any
   export default mod
 }
+
+declare module "*.png" {
+  const mod: any
+  export default mod
+}
