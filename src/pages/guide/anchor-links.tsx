@@ -1,6 +1,6 @@
-import { scopedCss } from '@viewfly/scoped-css'
-import { inject, onMount, useSignal } from '@viewfly/core'
-import { fromEvent } from '@tanbo/stream'
+import { scopedCSS } from '@viewfly/scoped-css'
+import { inject, onMounted, useSignal } from '@viewfly/core'
+import { delay, fromEvent } from '@tanbo/stream'
 
 import css from './anchor-links.module.scss'
 import { ViewUpdateInjectionToken } from './injection-tokens'
@@ -12,7 +12,7 @@ interface Link {
   level: string
 }
 
-export const AnchorLinks = scopedCss(css, () => {
+export const AnchorLinks = scopedCSS(css, () => {
   const subject = inject(ViewUpdateInjectionToken)
 
   const links = useSignal<Link[]>([])
@@ -49,12 +49,15 @@ export const AnchorLinks = scopedCss(css, () => {
     }, 400)
   }
 
-  onMount(() => {
+  onMounted(() => {
     const subscription = fromEvent(window, 'scroll').subscribe(() => {
       findCurrent()
     })
 
-    subscription.add(subject.subscribe((ev) => {
+    subscription.add(subject.pipe(delay(10)).subscribe((ev) => {
+      if (!ev) {
+        return
+      }
       const newLinks = Array.from(ev.children).filter(i => {
         return location.pathname.indexOf('/api') === 0 ? /h[1-3]/i.test(i.tagName) : /h[1-6]/i.test(i.tagName)
       }).map((i) => {

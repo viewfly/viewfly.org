@@ -1,8 +1,8 @@
-import { scopedCss } from '@viewfly/scoped-css'
+import { scopedCSS } from '@viewfly/scoped-css'
 
 import css from './banner.module.scss'
 
-export const Banner = scopedCss(css, () => {
+export const Banner = scopedCSS(css, () => {
   return () => {
     return (
       <div css="banner" class="ui-container-fluid">

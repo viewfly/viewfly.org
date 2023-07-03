@@ -1,15 +1,18 @@
-import css from './guide.module.scss'
-import { scopedCss } from '@viewfly/scoped-css'
-
-import Intro from './start/intro'
-import { Subject } from '@tanbo/stream'
+import { scopedCSS } from '@viewfly/scoped-css'
+import { BehaviorSubject } from '@tanbo/stream'
 import { provide } from '@viewfly/core'
+import { Link, RouterOutlet } from '@viewfly/router'
+
+import css from './guide.module.scss'
 import { ViewUpdateInjectionToken } from './injection-tokens'
 import { AnchorLinks } from './anchor-links'
+import Intro from './start/intro'
+import Start from './start/start'
+import Component from './docs/component'
 
-export const Guide = scopedCss(css, () => {
+export const Guide = scopedCSS(css, () => {
 
-  const onViewChange = new Subject()
+  const onViewChange = new BehaviorSubject<HTMLElement | null>(null)
 
   provide({
     provide: ViewUpdateInjectionToken,
@@ -23,25 +26,16 @@ export const Guide = scopedCss(css, () => {
             <h3>起步</h3>
             <ul>
               <li>
-                <a css="active" href="">简介</a>
+                <Link to="./" active={css.active} exact>简介</Link>
               </li>
               <li>
-                <a href="">快速上手</a>
+                <Link to="./start" active={css.active}>快速上手</Link>
               </li>
             </ul>
             <h3>基础</h3>
             <ul>
               <li>
-                <a href="">组件</a>
-              </li>
-              <li>
-                <a href="">属性</a>
-              </li>
-              <li>
-                <a href="">状态管理</a>
-              </li>
-              <li>
-                <a href="">状态组合与监听</a>
+                <Link to="./component" active={css.active}>组件及状态管理</Link>
               </li>
               <li>
                 <a href="">生命周期</a>
@@ -74,7 +68,20 @@ export const Guide = scopedCss(css, () => {
           </nav>
         </div>
         <div class="doc-content" css="doc-content">
-          <Intro/>
+          <RouterOutlet config={[
+            {
+              name: '',
+              component: Intro
+            },
+            {
+              name: 'start',
+              component: Start
+            },
+            {
+              name: 'component',
+              component: Component
+            }
+          ]}/>
           <p css="ad">官方文档由 Textbus 编写</p>
         </div>
         <div css="links">

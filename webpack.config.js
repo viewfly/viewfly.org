@@ -17,6 +17,7 @@ module.exports = {
   },
   devServer: {
     host: ip.address(),
+    historyApiFallback: true,
     static: {
       directory: path.join(__dirname, 'public')
     },
@@ -69,7 +70,8 @@ module.exports = {
       extensions: ['.ts', '.tsx']
     }),
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: './public/index.html',
+      publicPath: '/'
     })
   ]
 }

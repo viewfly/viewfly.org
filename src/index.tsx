@@ -4,4 +4,4 @@ import 'normalize.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './scss/index.scss'
 
-createApp(document.getElementById('app')!, <App/>)
+createApp(document.body!, <App/>)

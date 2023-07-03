@@ -1,4 +1,4 @@
 import { InjectionToken } from '@viewfly/core'
-import { Subject } from '@tanbo/stream'
+import { BehaviorSubject } from '@tanbo/stream'
 
-export const ViewUpdateInjectionToken = new InjectionToken<Subject<HTMLElement>>('ViewUpdateInjectionToken')
+export const ViewUpdateInjectionToken = new InjectionToken<BehaviorSubject<HTMLElement | null>>('ViewUpdateInjectionToken')
