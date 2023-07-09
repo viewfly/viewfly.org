@@ -5,7 +5,7 @@ const ip = require('ip')
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: process.env.NODE_ENV === 'development' ? 'cheap-module-source-map' : undefined,
   entry: {
     index: path.resolve(__dirname, './src/index.tsx')
   },
@@ -71,7 +71,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      publicPath: '/'
+      publicPath: '/',
+      favicon: './public/favicon.ico'
     })
   ]
 }
