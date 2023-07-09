@@ -10,10 +10,10 @@ export const Header = scopedCSS(css, () => {
       <header css="header" class="ui-container-fluid">
         <div css="nav" class="ui-container">
           <div css="left">
-            <a css="logo-link" href="#">
+            <Link css="logo-link" to="/">
               <img css="logo" src={logo} alt="log"/>
               <span>Viewfly</span>
-            </a>
+            </Link>
           </div>
           <div css="right">
             <ul>
