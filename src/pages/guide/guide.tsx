@@ -13,6 +13,7 @@ import LifeCycle from './docs/life-cycle'
 import Di from './docs/di'
 import Router from './docs/router'
 import Fork from './docs/fork'
+import Cli from './docs/cli'
 
 export const Guide = scopedCSS(css, () => {
 
@@ -57,7 +58,7 @@ export const Guide = scopedCSS(css, () => {
             <h3>工具</h3>
             <ul>
               <li>
-                <a href="">脚手架</a>
+                <Link to="./cli" active={css.active}>脚手架</Link>
               </li>
             </ul>
             <h3>高级</h3>
@@ -100,6 +101,10 @@ export const Guide = scopedCSS(css, () => {
             {
               name: 'fork',
               component: Fork
+            },
+            {
+              name: 'cli',
+              component: Cli
             }
           ]}/>
           <p css="ad">官方文档由 Textbus 编写</p>
