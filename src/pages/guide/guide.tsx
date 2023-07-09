@@ -9,6 +9,10 @@ import { AnchorLinks } from './anchor-links'
 import Intro from './start/intro'
 import Start from './start/start'
 import Component from './docs/component'
+import LifeCycle from './docs/life-cycle'
+import Di from './docs/di'
+import Router from './docs/router'
+import Fork from './docs/fork'
 
 export const Guide = scopedCSS(css, () => {
 
@@ -38,16 +42,16 @@ export const Guide = scopedCSS(css, () => {
                 <Link to="./component" active={css.active}>组件及状态管理</Link>
               </li>
               <li>
-                <a href="">生命周期</a>
+                <Link to="./life-cycle" active={css.active}>生命周期</Link>
               </li>
               <li>
-                <a href="">依赖注入</a>
+                <Link to="./di" active={css.active}>依赖注入</Link>
               </li>
               <li>
-                <a href="">路由</a>
+                <Link to="./router" active={css.active}>路由</Link>
               </li>
               <li>
-                <a href="">子应用</a>
+                <Link to="./fork" active={css.active}>子应用</Link>
               </li>
             </ul>
             <h3>工具</h3>
@@ -80,6 +84,22 @@ export const Guide = scopedCSS(css, () => {
             {
               name: 'component',
               component: Component
+            },
+            {
+              name: 'life-cycle',
+              component: LifeCycle
+            },
+            {
+              name: 'di',
+              component: Di
+            },
+            {
+              name: 'router',
+              component: Router
+            },
+            {
+              name: 'fork',
+              component: Fork
             }
           ]}/>
           <p css="ad">官方文档由 Textbus 编写</p>
