@@ -49,9 +49,6 @@ export function Guide() {
                 <Link to="./life-cycle" active={css.active}>生命周期</Link>
               </li>
               <li>
-                <Link to="./di" active={css.active}>依赖注入</Link>
-              </li>
-              <li>
                 <Link to="./router" active={css.active}>路由</Link>
               </li>
               <li>
@@ -59,6 +56,9 @@ export function Guide() {
               </li>
               <li>
                 <Link to="./scoped-css" active={css.active}>模块化 CSS</Link>
+              </li>
+              <li>
+                <Link to="./di" active={css.active}>依赖注入</Link>
               </li>
               <li>
                 <Link to="./hooks" active={css.active}>更多 hooks</Link>
