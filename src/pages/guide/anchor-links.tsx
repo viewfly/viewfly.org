@@ -1,4 +1,4 @@
-import { scopedCSS } from '@viewfly/scoped-css'
+import { withScopedCSS } from '@viewfly/scoped-css'
 import { inject, onMounted, useSignal } from '@viewfly/core'
 import { delay, fromEvent } from '@tanbo/stream'
 
@@ -12,7 +12,7 @@ interface Link {
   level: string
 }
 
-export const AnchorLinks = scopedCSS(css, () => {
+export function AnchorLinks() {
   const subject = inject(ViewUpdateInjectionToken)
 
   const links = useSignal<Link[]>([])
@@ -79,7 +79,7 @@ export const AnchorLinks = scopedCSS(css, () => {
   })
 
 
-  return () => {
+  return withScopedCSS(css, () => {
     return (
       <div css="anchor-links">
         {
@@ -99,5 +99,5 @@ export const AnchorLinks = scopedCSS(css, () => {
         }
       </div>
     )
-  }
-})
+  })
+}

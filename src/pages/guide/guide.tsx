@@ -1,4 +1,4 @@
-import { scopedCSS } from '@viewfly/scoped-css'
+import { withScopedCSS } from '@viewfly/scoped-css'
 import { BehaviorSubject } from '@tanbo/stream'
 import { provide } from '@viewfly/core'
 import { Link, RouterOutlet } from '@viewfly/router'
@@ -14,16 +14,19 @@ import Di from './docs/di'
 import Router from './docs/router'
 import Fork from './docs/fork'
 import Cli from './docs/cli'
+import ScopedCss from './docs/scoped-css'
+import Hooks from './docs/hooks'
+import Renderer from './docs/renderer'
+import Test from './docs/test'
 
-export const Guide = scopedCSS(css, () => {
-
+export function Guide() {
   const onViewChange = new BehaviorSubject<HTMLElement | null>(null)
 
   provide({
     provide: ViewUpdateInjectionToken,
     useValue: onViewChange
   })
-  return () => {
+  return withScopedCSS(css, () => {
     return (
       <div class="ui-container" css="page">
         <div css="nav">
@@ -54,6 +57,12 @@ export const Guide = scopedCSS(css, () => {
               <li>
                 <Link to="./fork" active={css.active}>子应用</Link>
               </li>
+              <li>
+                <Link to="./scoped-css" active={css.active}>模块化 CSS</Link>
+              </li>
+              <li>
+                <Link to="./hooks" active={css.active}>更多 hooks</Link>
+              </li>
             </ul>
             <h3>工具</h3>
             <ul>
@@ -64,10 +73,10 @@ export const Guide = scopedCSS(css, () => {
             <h3>高级</h3>
             <ul>
               <li>
-                <a href="">渲染机制</a>
+                <Link to="./renderer" active={css.active}>渲染及性能优化</Link>
               </li>
               <li>
-                <a href="">测试</a>
+                <Link to="./test" active={css.active}>单元测试</Link>
               </li>
             </ul>
           </nav>
@@ -105,6 +114,22 @@ export const Guide = scopedCSS(css, () => {
             {
               name: 'cli',
               component: Cli
+            },
+            {
+              name: 'scoped-css',
+              component: ScopedCss
+            },
+            {
+              name: 'hooks',
+              component: Hooks
+            },
+            {
+              name: 'renderer',
+              component: Renderer
+            },
+            {
+              name: 'test',
+              component: Test
             }
           ]}/>
           <p css="ad">官方文档由 Textbus 编写</p>
@@ -114,5 +139,5 @@ export const Guide = scopedCSS(css, () => {
         </div>
       </div>
     )
-  }
-})
+  })
+}
