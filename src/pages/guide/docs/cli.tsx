@@ -9,7 +9,7 @@ export default function() {
     return (
       <div ref={ref}><h1>脚手架</h1>
 <h2>安装</h2>
-<p style="background-color:rgb(255, 255, 255)"><span style="color:rgb(73, 80, 96)">通过 &nbsp;npm 安装 Viewfly 的脚手架。</span></p><pre lang="" theme="null" class="tb-pre"><div class="tb-pre-content"><div style="width:2.5em" class="tb-code-line-number-bg"></div><div class="tb-code-content"><div class="tb-code-line">npm install @viewfly/cli -g</div></div><span class="tb-pre-lang"></span></div></pre>
+<p style="background-color:rgb(255, 255, 255)"><span style="color:rgb(73, 80, 96)">通过 &nbsp;npm 安装 Viewfly 的脚手架。</span></p><pre lang="" theme="dark" class="tb-pre"><div class="tb-pre-content"><div style="width:2.5em" class="tb-code-line-number-bg"></div><div class="tb-code-content"><div class="tb-code-line">npm install @viewfly/cli -g</div></div><span class="tb-pre-lang"></span></div></pre>
 <h2>支持</h2>
 <tb-todolist>
   <div class="tb-todolist-item">

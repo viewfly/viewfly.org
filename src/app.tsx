@@ -5,6 +5,7 @@ import { Home } from './pages/home/home'
 import { Guide } from './pages/guide/guide'
 import './assets/doc.scss'
 import './app.scss'
+import { Footer } from './components/footer/footer'
 
 export function App() {
   return () => {
@@ -23,6 +24,7 @@ export function App() {
             }
           ]}></RouterOutlet>
         </main>
+        <Footer/>
       </RootRouter>
     )
   }
