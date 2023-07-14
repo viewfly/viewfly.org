@@ -11,6 +11,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
+    filename: '[name]_[hash:8].js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
