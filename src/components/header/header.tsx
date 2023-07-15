@@ -21,7 +21,7 @@ export function Header() {
               <li><Link to="/guide" active={css.active}>开发者文档</Link></li>
               <li><a href="/guide/cli">脚手架</a></li>
               {/*<li><a href="">生态</a></li>*/}
-              <li><a href="https://github.com/viewfly/viewfly" target="_blank"><i class="bi-github"></i></a></li>
+              <li><a href="https://github.com/viewfly/viewfly" target="_blank" css="icon-github"><i class="bi-github"></i></a></li>
             </ul>
           </div>
         </div>
