@@ -67,10 +67,10 @@ export function Home() {
             <h3>Router</h3>
             <p>官方路由支持</p>
           </div>
-          {/*<div>*/}
-          {/*  <h3>CLI</h3>*/}
-          {/*  <p>官方提供脚手架</p>*/}
-          {/*</div>*/}
+          <div>
+            <h3>CLI</h3>
+            <p>官方提供脚手架</p>
+          </div>
           <div>
             <h3>100%</h3>
             <p>单元测试覆盖</p>
