@@ -20,6 +20,7 @@
 .left {
   padding-top: 10px;
   line-height: 40px;
+  display: flex;
 }
 
 .logo {
@@ -38,13 +39,15 @@
 }
 
 .right {
-  padding-top: 2px;
+  display: flex;
+}
 
-  ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-  }
+.nav-links {
+  padding-top: 2px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
 
   li {
     padding: 0 10px;

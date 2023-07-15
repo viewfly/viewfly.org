@@ -1,8 +1,11 @@
+@import "../../scss/varibles";
+
 .banner {
   text-align: center;
   padding-top: 60px;
   padding-bottom: 80px;
-  //background: #fff;
+  background: #79b30f;
+  //color: #79b30f;
 }
 
 .name {
@@ -10,7 +13,7 @@
   font-weight: normal;
   margin-top: 0;
   margin-bottom: .5em;
-  color: #f69220;
+  //color: #f69220;
 }
 
 .slogan {

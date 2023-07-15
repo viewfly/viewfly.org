@@ -1,12 +1,14 @@
 @import "../../scss/varibles";
 
 .desc {
-  background-color: #f1f1f1;
+  //background-color: #f1f1f1;
   padding-top: 2em;
-  padding-bottom: 1em;
+  padding-bottom: 3em;
+
   h3 {
     margin: 0;
   }
+
   p {
     line-height: 1.618em;
   }
@@ -14,5 +16,55 @@
 
 .ad {
   height: 300px;
-  background-color: $color-lighter;
+  //background-color: $color-lighter;
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: 1em;
+  opacity: .8;
+}
+
+.group {
+  > div {
+    border-right: 1px solid #ddd;
+    padding: 0 30px;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+}
+
+.stages {
+  border: 1px solid #ddd;
+  //background-color: #f1f1f1;
+  background-color: #fff;
+  height: 80px;
+  display: flex !important;
+  padding: 0 80px !important;
+  border-radius: 4px;
+
+  > div {
+    flex: 1;
+    border-right: 1px solid #ddd;
+    padding: 0 20px;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  h3 {
+    font-size: 1em;
+    margin-bottom: 0;
+    white-space: nowrap;
+    color: $color-primary;
+  }
+
+  p {
+    margin-top: .5em;
+    font-size: .9em;
+    line-height: 1.6;
+  }
 }
