@@ -3,6 +3,10 @@ import { withScopedCSS } from '@viewfly/scoped-css'
 
 import css from './home.module.scss'
 
+import haubi from './huabi.png'
+import cs from './38655348.jpeg'
+import cg from './46988668.jpeg'
+
 export function Home() {
   return withScopedCSS(css, () => {
     return (
@@ -23,7 +27,7 @@ export function Home() {
                   <i class="bi bi-shield-fill-check"></i>
                 </div>
                 <h3>类型安全</h3>
-                <p>完全的 TypeScript 支持，帮助你更简单的完成应用开发</p>
+                <p>完整的 TypeScript 支持，帮助你更简单的完成应用开发</p>
               </div>
               <div class="ui-col-sm-12 ui-col-lg-6">
                 <div css="icon">
@@ -72,7 +76,41 @@ export function Home() {
             <p>支持服务端渲染</p>
           </div>
         </div>
-        <div class="ui-container-fluid" css="ad"></div>
+        <div class="ui-container-fluid" css="authors">
+          <div class="ui-container">
+            <h2>Contributors</h2>
+            <div css="author-list">
+              <div css="author-item">
+                <div css="author-info">
+                  <div>
+                    <img src={haubi} alt=""/>
+                  </div>
+                  <h3>画笔</h3>
+                  <p>前端开发老鸟，热爱开源，爱折腾，Textbus 富文本框架作者。</p>
+                  <p>Viewfly 为其最新力作，旨在为开发者提供更简单、更轻巧、更易使用前端基础框架。</p>
+                </div>
+              </div>
+              <div css="author-item">
+                <div css="author-info">
+                  <div>
+                    <img src={cs} alt=""/>
+                  </div>
+                  <h3>TinyCricetus</h3>
+                  <p></p>
+                </div>
+              </div>
+              <div css="author-item">
+                <div css="author-info">
+                  <div>
+                    <img src={cg} alt=""/>
+                  </div>
+                  <h3>GordonHU-LB</h3>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </>
     )
   })
