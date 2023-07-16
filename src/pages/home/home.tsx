@@ -78,37 +78,35 @@ export function Home() {
             </div>
           </div>
         </div>
-        <div class="ui-container-fluid" css="authors">
-          <div class="ui-container">
-            <h2>Contributors</h2>
-            <div css="author-list">
-              <div css="author-item">
-                <div css="author-info">
-                  <div>
-                    <img src={haubi} alt=""/>
-                  </div>
-                  <h3>画笔</h3>
-                  <p>前端开发老鸟，热爱开源，爱折腾，Textbus 富文本框架作者。</p>
-                  <p>Viewfly 为其最新力作，旨在为开发者提供更简单、更轻巧、更易使用前端基础框架。</p>
+        <div class="ui-container" css="authors">
+          <h2>Contributors</h2>
+          <div css="author-list" class="ui-row">
+            <div css="author-item" class="ui-col-xs-24 ui-col-sm-12 ui-col-md-8">
+              <div css="author-info">
+                <div>
+                  <img src={haubi} alt=""/>
                 </div>
+                <h3>画笔</h3>
+                <p>前端开发老鸟，热爱开源，爱折腾，Textbus 富文本框架作者。</p>
+                <p>Viewfly 为其最新力作，旨在为开发者提供更简单、更轻巧、更易使用前端基础框架。</p>
               </div>
-              <div css="author-item">
-                <div css="author-info">
-                  <div>
-                    <img src={cs} alt=""/>
-                  </div>
-                  <h3>TinyCricetus</h3>
-                  <p></p>
+            </div>
+            <div css="author-item" class="ui-col-xs-24 ui-col-sm-12 ui-col-md-8">
+              <div css="author-info">
+                <div>
+                  <img src={cs} alt=""/>
                 </div>
+                <h3>TinyCricetus</h3>
+                <p></p>
               </div>
-              <div css="author-item">
-                <div css="author-info">
-                  <div>
-                    <img src={cg} alt=""/>
-                  </div>
-                  <h3>GordonHU-LB</h3>
-                  <p></p>
+            </div>
+            <div css="author-item" class="ui-col-xs-24 ui-col-sm-12 ui-col-md-8">
+              <div css="author-info">
+                <div>
+                  <img src={cg} alt=""/>
                 </div>
+                <h3>GordonHU-LB</h3>
+                <p></p>
               </div>
             </div>
           </div>

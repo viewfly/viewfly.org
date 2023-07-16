@@ -110,11 +110,10 @@
 }
 
 .author-list {
-  display: flex;
+  //display: flex;
 }
 
 .author-item {
-  flex: 1;
   padding: 0 30px;
 }
 
@@ -124,6 +123,7 @@
   height: 400px;
   border-radius: 10px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, .1);
+  margin-bottom: 20px;
 
   div, h3 {
     text-align: center;

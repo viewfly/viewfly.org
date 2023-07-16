@@ -6,7 +6,7 @@ import logo from '../../assets/logo.svg'
 export function Footer() {
   return withScopedCSS(css, () => {
     return (
-      <footer class="ui-container-fluid" css="footer">
+      <footer css="footer">
         <div class="ui-container" css="footer-layout">
           <div css="copyright">
             <h4><img src={logo} alt=""/> <span>Viewfly</span></h4>
