@@ -44,13 +44,16 @@ export function Header() {
           <div css="right">
             <ul css="nav-links">
               <li><a href="https://github.com/viewfly/viewfly" target="_blank" css="icon-github"><i class="bi-github"></i></a></li>
-              <li css="nav-btn" style={{ display: isShowNavBtn() ? 'block' : 'none' }}>
-                <button onClick={(ev) => {
-                  ev.stopPropagation()
-                  showNavBtn.set(!showNavBtn())
-                }} type="button"><i class="bi bi-list-ul"></i>
-                </button>
-              </li>
+              {
+                isShowNavBtn() ? <li css="nav-btn">
+                  <button onClick={(ev) => {
+                    ev.stopPropagation()
+                    showNavBtn.set(!showNavBtn())
+                  }} type="button"><i class="bi bi-list-ul"></i>
+                  </button>
+                </li> : null
+              }
+
             </ul>
           </div>
         </div>
