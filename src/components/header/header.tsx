@@ -35,11 +35,11 @@ export function Header() {
           <div css="right">
             <ul css="nav-links">
               <li><a href="https://github.com/viewfly/viewfly" target="_blank" css="icon-github"><i class="bi-github"></i></a></li>
-              <li>
+              <li css="nav-btn">
                 <button onClick={(ev) => {
                   ev.stopPropagation()
                   showNavBtn.set(!showNavBtn())
-                }} css="nav-btn" type="button"><i class="bi bi-list-ul"></i>
+                }} type="button"><i class="bi bi-list-ul"></i>
                 </button>
               </li>
             </ul>

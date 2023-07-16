@@ -155,13 +155,17 @@
   }
   .nav {
     position: static;
-    background-color: #f00;
     z-index: 0;
     top: 0;
     right: 0;
+    transform: none;
+    box-shadow: none;
+    background: none;
 
     nav {
       display: block;
+      position: sticky;
+      top: 120px;
     }
   }
   .links {

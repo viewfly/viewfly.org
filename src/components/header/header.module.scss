@@ -76,11 +76,17 @@
 }
 
 .nav-btn {
-  background: $color-primary;
-  border-radius: 4px;
-  display: none;
-  border: none;
-  @media (min-width: $screen-xs-min) {
+  button {
+    background: $color-primary;
+    border-radius: 4px;
+    border: none;
+  }
+
+  @media (min-width: $screen-sm-min) {
     display: block;
+  }
+
+  @media (min-width: $screen-md-min) {
+    display: none;
   }
 }
