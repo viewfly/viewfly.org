@@ -1,9 +1,9 @@
-import { onMounted, useSignal } from '@viewfly/core'
+import { inject, onDestroy, onMounted, useSignal } from '@viewfly/core'
 import { withScopedCSS } from '@viewfly/scoped-css'
+import { Link, Navigator } from '@viewfly/router'
 
 import logo from '../../assets/logo.svg'
 import css from './header.module.scss'
-import { Link } from '@viewfly/router'
 
 export const showNavBtn = useSignal(false)
 
@@ -16,6 +16,15 @@ export function Header() {
     return () => {
       document.removeEventListener('click', fn)
     }
+  })
+  const navigator = inject(Navigator)
+  const isShowNavBtn = useSignal(navigator.pathname.startsWith('/guide'))
+  const sub = navigator.onUrlChanged.subscribe(() => {
+    isShowNavBtn.set(navigator.pathname.startsWith('/guide'))
+  })
+
+  onDestroy(() => {
+    sub.unsubscribe()
   })
   return withScopedCSS(css, () => {
     return (
@@ -35,7 +44,7 @@ export function Header() {
           <div css="right">
             <ul css="nav-links">
               <li><a href="https://github.com/viewfly/viewfly" target="_blank" css="icon-github"><i class="bi-github"></i></a></li>
-              <li css="nav-btn">
+              <li css="nav-btn" style={{ display: isShowNavBtn() ? 'block' : 'none' }}>
                 <button onClick={(ev) => {
                   ev.stopPropagation()
                   showNavBtn.set(!showNavBtn())

@@ -36,9 +36,16 @@
   //text-shadow: 1px 1px 0 #000;
   text-decoration: none;
   display: flex;
+  align-items: center;
   @media (min-width: $screen-xs-min) {
     span {
       display: none;
+    }
+  }
+  @media (min-width: $screen-sm-min) {
+    span {
+      display: block;
+      margin-right: 1em;
     }
   }
 }
@@ -80,6 +87,11 @@
     background: $color-primary;
     border-radius: 4px;
     border: none;
+    appearance: none;
+    width: 30px;
+    height: 24px;
+    padding: 0;
+    color: inherit;
   }
 
   @media (min-width: $screen-sm-min) {
