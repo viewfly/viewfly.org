@@ -18,6 +18,7 @@ import ScopedCss from './docs/scoped-css'
 import Hooks from './docs/hooks'
 import Renderer from './docs/renderer'
 import Test from './docs/test'
+import { showNavBtn } from '../../components/header/header'
 
 export function Guide() {
   const onViewChange = new BehaviorSubject<HTMLElement | null>(null)
@@ -29,7 +30,7 @@ export function Guide() {
   return withScopedCSS(css, () => {
     return (
       <div class="ui-container" css="page">
-        <div css="nav">
+        <div css={['nav', {active: showNavBtn()}]}>
           <nav>
             <h3>起步</h3>
             <ul>

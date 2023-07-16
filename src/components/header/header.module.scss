@@ -74,3 +74,13 @@
 .icon-github {
   font-size: 1.4em;
 }
+
+.nav-btn {
+  background: $color-primary;
+  border-radius: 4px;
+  display: none;
+  border: none;
+  @media (min-width: $screen-xs-min) {
+    display: block;
+  }
+}

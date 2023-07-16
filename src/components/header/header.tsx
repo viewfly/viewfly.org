@@ -1,10 +1,22 @@
+import { onMounted, useSignal } from '@viewfly/core'
 import { withScopedCSS } from '@viewfly/scoped-css'
 
 import logo from '../../assets/logo.svg'
 import css from './header.module.scss'
 import { Link } from '@viewfly/router'
 
+export const showNavBtn = useSignal(false)
+
 export function Header() {
+  onMounted(() => {
+    const fn = function () {
+      showNavBtn.set(false)
+    }
+    document.addEventListener('click', fn)
+    return () => {
+      document.removeEventListener('click', fn)
+    }
+  })
   return withScopedCSS(css, () => {
     return (
       <header css="header">
@@ -22,8 +34,14 @@ export function Header() {
           </div>
           <div css="right">
             <ul css="nav-links">
-              {/*<li><a href="">生态</a></li>*/}
               <li><a href="https://github.com/viewfly/viewfly" target="_blank" css="icon-github"><i class="bi-github"></i></a></li>
+              <li>
+                <button onClick={(ev) => {
+                  ev.stopPropagation()
+                  showNavBtn.set(!showNavBtn())
+                }} css="nav-btn" type="button"><i class="bi bi-list-ul"></i>
+                </button>
+              </li>
             </ul>
           </div>
         </div>

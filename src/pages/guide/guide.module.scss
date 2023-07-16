@@ -1,17 +1,20 @@
 @import "../../scss/varibles";
+
 .page {
   padding-top: 30px;
   padding-bottom: 60px;
-  display: flex!important;
+  display: flex !important;
 }
 
 .nav {
   font-size: 16px;
   width: 200px;
+
   nav {
     position: sticky;
     top: 120px;
   }
+
   h3 {
     font-size: 14px;
     font-weight: 400;
@@ -31,12 +34,14 @@
       text-decoration: none;
       position: relative;
       display: block;
+
       span {
         display: block;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
       &:hover {
         color: $color-primary;
       }
@@ -60,12 +65,7 @@
 
 .doc-content {
   flex: 1;
-  background: #fff;
-  padding: 0 30px 20px;
-  border-radius: 4px;
-  line-height: 1.5em;
-  color: #555;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+  line-height: 1.618;
 
   a {
     color: $color-primary;
@@ -87,11 +87,13 @@
 .links {
   width: 200px;
 }
+
 .ad {
   font-size: .9em;
   text-align: center;
   color: #ccc;
-  &:before,&:after {
+
+  &:before, &:after {
     content: "";
     display: inline-block;
     width: 2em;
@@ -100,17 +102,80 @@
     vertical-align: middle;
   }
 }
-//@media (min-width: $screen-sm-min) {
-//  .auto-hide {
-//    display: none;
-//  }
-//}
-//
-//@media (min-width: $screen-md-min) {
-//  .auto-hide {
-//    display: block;
-//  }
-//}
+
+@media (min-width: $screen-xs-min) {
+  .page {
+    display: block;
+  }
+  .doc-content {
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .nav {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    padding-left: 20px;
+    box-shadow: -1px -2px 3px rgba(0, 0, 0, .1);
+    transform: translateX(100%);
+    transition: transfrom .2s;
+    &.active {
+      transform: translateX(0);
+    }
+
+    nav {
+      position: static;
+    }
+  }
+  .links {
+    display: none;
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  .links {
+    display: none;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .page {
+    display: flex;
+  }
+  .doc-content {
+    background: #fff;
+    padding: 0 30px 20px;
+    border-radius: 4px;
+    color: #555;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+  }
+  .nav {
+    position: static;
+    background-color: #f00;
+    z-index: 0;
+    top: 0;
+    right: 0;
+
+    nav {
+      display: block;
+    }
+  }
+  .links {
+    display: none;
+  }
+}
+
+
+@media (min-width: $screen-lg-min) {
+  .links {
+    display: block;
+  }
+}
+
 //
 //@media (min-width: $screen-lg-min) {
 //
