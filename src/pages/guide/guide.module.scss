@@ -29,6 +29,20 @@
   li {
     padding: .5em 0;
 
+    .tag {
+      font-size: 12px;
+      background: $color-danger;
+      border-radius: 3px;
+      color: #fff;
+      padding: 2px 4px;
+      display: inline-block;
+      height: 16px;
+      line-height: 16px;
+      position: relative;
+      top: -4px;
+      font-style: normal;
+    }
+
     a {
       color: #555;
       text-decoration: none;

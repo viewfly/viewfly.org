@@ -50,7 +50,7 @@ export function Guide() {
                 <Link to="./life-cycle" active={css.active}>生命周期</Link>
               </li>
               <li>
-                <Link to="./router" active={css.active}>路由</Link>
+                <Link to="./router" active={css.active}>路由 <i css="tag">dev</i></Link>
               </li>
               <li>
                 <Link to="./fork" active={css.active}>子应用</Link>
@@ -68,7 +68,7 @@ export function Guide() {
             <h3>工具</h3>
             <ul>
               <li>
-                <Link to="./cli" active={css.active}>脚手架</Link>
+                <Link to="./cli" active={css.active}>脚手架 <i css="tag">dev</i></Link>
               </li>
             </ul>
             <h3>高级</h3>

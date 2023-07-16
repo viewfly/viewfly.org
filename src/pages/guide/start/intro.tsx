@@ -19,11 +19,12 @@ export default function() {
   <li class="tb-list-item">Viewfly 使用 tsx/jsx 描述 UI，并可以声明式的绑定事件和数据。</li>
 </ul>
 <tb-alert data-type="warning" class="tb-alert tb-alert-warning">
-  <div>ℹ️ 我们假定你已基本熟悉 HTML、CSS、JavaScript 和 tsx/jsx 的基本使用，如果你还不熟悉相关的知识，建议你选去了解这些基础知识的基本概念，并能简单的使用。</div>
+  <div>ℹ️ 我们假定你已基本熟悉 HTML、CSS、JavaScript 和 tsx/jsx 的使用，如果你还不熟悉相关的知识，建议你先去了解这些基础知识的基本概念，并能简单的使用。</div>
 </tb-alert>
 <h2>为什么开发 Viewfly？</h2>
-<p>如果你是一位经验丰富的前端开发者，我相信你也会和我们一样，遇到相同的问题。有的前端框架太重，创建一个组件的样板代码过多；有的不符合直觉，有闭包陷阱；有的有太多和社区割裂的自创语法，不能很好的和其它类库结合；有的有太多自己的主张，侵入性太严重；有的对 TypeScript 支持不友好等等。</p>
-<p>如今，前端真的是太重了，学习一个框架就像学习一门新语言一样，<span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">我们相信，只使用普通的 JavaScript 一样可以编写出高质量、可维护、简单且容易扩展的代码。这也是我开发 Viewfly 的初衷。</span></p>
+<p>如果你是一位经验丰富的前端开发者，我相信你也会和我们一样遇到相同的问题。有的前端框架太重，创建一个组件的样板代码过多；有的不符合直觉，有闭包陷阱；有的有太多和社区割裂的自创语法，不能很好的和其它类库结合；有的有太多自己的主张，侵入性太严重；有的对 TypeScript 支持不友好等等。</p>
+<p>如今，前端真的是太重了，学习一个框架就像学习一门新语言一样。</p>
+<p><span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">我们相信，只使用普通的 JavaScript 一样可以编写出高质量、可维护、简单且容易扩展的代码。这也是我开发 Viewfly 的初衷。</span></p>
 <p><span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">Viewfly 充分吸收了现有前端框架的一些优点，并在开发者使用层面有所体现，有：</span></p>
 <ul>
   <li class="tb-list-item"><strong style="color:rgb(18, 118, 204)"><span style="background-color:rgb(255, 255, 255)">JSX</span></strong><span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">&nbsp;—— JSX 是 React 发明的一种声明式 UI 描述语言，其灵活的编写方式，丰富的表达能力，现在被大多数前端框架所采用，基本已成为前端 UI 描述语言的通用解决方案。</span></li>
