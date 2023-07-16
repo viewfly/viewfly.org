@@ -36,10 +36,16 @@
   //text-shadow: 1px 1px 0 #000;
   text-decoration: none;
   display: flex;
+  @media (min-width: $screen-xs-min) {
+    span {
+      display: none;
+    }
+  }
 }
 
 .right {
   display: flex;
+  padding-top: 10px;
 }
 
 .nav-links {
@@ -48,9 +54,11 @@
   display: flex;
   align-items: center;
   margin: 0;
+  padding-left: 0;
 
   li {
     padding: 0 10px;
+    white-space: nowrap;
   }
 
   a {

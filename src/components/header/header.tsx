@@ -7,7 +7,7 @@ import { Link } from '@viewfly/router'
 export function Header() {
   return withScopedCSS(css, () => {
     return (
-      <header css="header" class="ui-container-fluid">
+      <header css="header">
         <div css="nav" class="ui-container">
           <div css="left">
             <Link css="logo-link" to="/">
