@@ -13,11 +13,11 @@
   "dependencies": {
     "@tanbo/css-themes": "^0.0.1",
     "@tanbo/stream": "^1.2.0",
-    "@viewfly/core": "^0.0.14",
-    "@viewfly/hooks": "^0.0.14",
-    "@viewfly/platform-browser": "^0.0.14",
-    "@viewfly/router": "^0.0.14",
-    "@viewfly/scoped-css": "^0.0.14",
+    "@viewfly/core": "^0.0.15",
+    "@viewfly/hooks": "^0.0.15",
+    "@viewfly/platform-browser": "^0.0.15",
+    "@viewfly/router": "^0.0.15",
+    "@viewfly/scoped-css": "^0.0.15",
     "bootstrap-icons": "^1.10.5",
     "normalize.css": "^8.0.1"
   },

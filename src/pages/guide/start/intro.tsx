@@ -27,6 +27,7 @@ export default function() {
 <p><span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">我们相信，只使用普通的 JavaScript 一样可以编写出高质量、可维护、简单且容易扩展的代码。这也是我开发 Viewfly 的初衷。</span></p>
 <p><span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">Viewfly 充分吸收了现有前端框架的一些优点，并在开发者使用层面有所体现，有：</span></p>
 <ul>
+  <li class="tb-list-item"><strong style="color:rgb(18, 118, 204)"><span style="background-color:rgb(255, 255, 255)">独立 Hook</span></strong>&nbsp;—— useSignal、useEffect 等所有以 use 开头的 hook 都可以在组件外使用，这让我们可以更灵活的组织组件和数据。</li>
   <li class="tb-list-item"><strong style="color:rgb(18, 118, 204)"><span style="background-color:rgb(255, 255, 255)">JSX</span></strong><span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">&nbsp;—— JSX 是 React 发明的一种声明式 UI 描述语言，其灵活的编写方式，丰富的表达能力，现在被大多数前端框架所采用，基本已成为前端 UI 描述语言的通用解决方案。</span></li>
   <li class="tb-list-item"><strong style="color:rgb(18, 118, 204)"><span style="background-color:rgb(255, 255, 255)">函数组件</span></strong><span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">&nbsp;—— 函数组件因其创建简单，使用灵活，备受前端开发人员青睐。</span></li>
   <li class="tb-list-item"><strong style="color:rgb(18, 118, 204)"><span style="background-color:rgb(255, 255, 255)">依赖注入</span></strong><span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">&nbsp;—— 依赖注入可以方便构建可拆分、可测试、架构健壮的应用。</span></li>

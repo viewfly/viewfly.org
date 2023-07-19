@@ -34,14 +34,14 @@ export function Home() {
                   <i class="bi bi-brightness-high-fill"></i>
                   <h3>符合直觉</h3>
                 </div>
-                <p>没有黑魔法，没有闭包陷阱，代码会按你的预期执行</p>
+                <p>没有 Hook 规则和闭包陷阱，代码会按你的预期执行</p>
               </div>
               <div class="ui-col-sm-12 ui-col-lg-6">
                 <div css="icon">
                   <i class="bi bi-cursor-fill"></i>
                   <h3>简单</h3>
                 </div>
-                <p>内核只有 10 个 API，不需要很多的经验，一样能快速上手</p>
+                <p>内核只有 10 个 API，新手也能快速创建富交互的应用</p>
               </div>
             </div>
           </div>
