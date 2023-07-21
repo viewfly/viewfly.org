@@ -2,14 +2,14 @@
 
 .header {
   height: 60px;
-  background-color: #333;
+  background-color: #fff;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, .1);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
-  color: #eee;
+  z-index: 10;
+  //color: #eee;
 }
 
 .nav {
@@ -37,6 +37,7 @@
   text-decoration: none;
   display: flex;
   align-items: center;
+  font-weight: bold;
   @media (min-width: $screen-xs-min) {
     span {
       display: none;

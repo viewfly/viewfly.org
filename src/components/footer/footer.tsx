@@ -6,12 +6,11 @@ import logo from '../../assets/logo.svg'
 export function Footer() {
   return withScopedCSS(css, () => {
     return (
-      <footer css="footer">
-        <div class="ui-container" css="footer-layout">
-          <div css="copyright">
+      <footer class="ui-container" css="footer">
+        <div css="footer-layout">
+          <div css="slogan">
             <h4><img src={logo} alt=""/> <span>Viewfly</span></h4>
-            <p>遵循 MIT License 开源协议</p>
-            <div>Copyright © 2023 画笔</div>
+            <p>简单、符合直觉的 JavaScript 框架</p>
           </div>
           <div css="footer-info">
             <div css="list">
@@ -29,6 +28,10 @@ export function Footer() {
                 <li><a href="https://textbus.io" target="_blank">Textbus 富文本框架</a></li>
               </ul>
             </div>
+          </div>
+          <div css="copyright">
+            <p>遵循 MIT License 开源协议</p>
+            <div>Copyright © 2023 画笔</div>
           </div>
         </div>
       </footer>
