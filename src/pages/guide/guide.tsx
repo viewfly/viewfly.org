@@ -6,18 +6,6 @@ import { Link, RouterOutlet } from '@viewfly/router'
 import css from './guide.module.scss'
 import { ViewUpdateInjectionToken } from './injection-tokens'
 import { AnchorLinks } from './anchor-links'
-import Intro from './start/intro'
-import Start from './start/start'
-import Component from './docs/component'
-import LifeCycle from './docs/life-cycle'
-import Di from './docs/di'
-import Router from './docs/router'
-import Fork from './docs/fork'
-import Cli from './docs/cli'
-import ScopedCss from './docs/scoped-css'
-import Hooks from './docs/hooks'
-import Renderer from './docs/renderer'
-import Test from './docs/test'
 import { showNavBtn } from '../../components/header/header'
 
 export function Guide() {
@@ -30,7 +18,7 @@ export function Guide() {
   return withScopedCSS(css, () => {
     return (
       <div class="ui-container" css="page">
-        <div css={['nav', {active: showNavBtn()}]}>
+        <div css={['nav', { active: showNavBtn() }]}>
           <nav>
             <h3>起步</h3>
             <ul>
@@ -86,51 +74,51 @@ export function Guide() {
           <RouterOutlet config={[
             {
               name: '',
-              component: Intro
+              component: import('./start/intro').then(m => m.default)
             },
             {
               name: 'start',
-              component: Start
+              component: import('./start/start').then(m => m.default)
             },
             {
               name: 'component',
-              component: Component
+              component: import('./docs/component').then(m => m.default)
             },
             {
               name: 'life-cycle',
-              component: LifeCycle
+              component: import('./docs/life-cycle').then(m => m.default)
             },
             {
               name: 'di',
-              component: Di
+              component: import('./docs/di').then(m => m.default)
             },
             {
               name: 'router',
-              component: Router
+              component: import('./docs/router').then(m => m.default)
             },
             {
               name: 'fork',
-              component: Fork
+              component: import('./docs/fork').then(m => m.default)
             },
             {
               name: 'cli',
-              component: Cli
+              component: import('./docs/cli').then(m => m.default)
             },
             {
               name: 'scoped-css',
-              component: ScopedCss
+              component: import('./docs/scoped-css').then(m => m.default)
             },
             {
               name: 'hooks',
-              component: Hooks
+              component: import('./docs/hooks').then(m => m.default)
             },
             {
               name: 'renderer',
-              component: Renderer
+              component: import('./docs/renderer').then(m => m.default)
             },
             {
               name: 'test',
-              component: Test
+              component: import('./docs/test').then(m => m.default)
             }
           ]}/>
           <p css="ad">官方文档由 Textbus 编写</p>
