@@ -2,7 +2,7 @@ import { withScopedCSS } from '@viewfly/scoped-css'
 import { inject, onMounted, useSignal } from '@viewfly/core'
 import { delay, fromEvent } from '@tanbo/stream'
 
-import css from './anchor-links.module.scss'
+import css from './anchor-links.scoped.scss'
 import { ViewUpdateInjectionToken } from './injection-tokens'
 
 interface Link {
@@ -81,17 +81,17 @@ export function AnchorLinks() {
 
   return withScopedCSS(css, () => {
     return (
-      <div css="anchor-links">
+      <div class="anchor-links">
         {
           links().map(item => {
             return (
               <a onClick={() => {
                 scrollIntoView(item)
               }
-              } css={['level-' + item.level, 'ui-anchor-link', {
+              } class={['level-' + item.level, 'ui-anchor-link', {
                 'ui-active': item.source === currentLink()
               }]}>
-                <div css="ui-anchor-link-line"></div>
+                <div class="ui-anchor-link-line"></div>
                 {item.label}
               </a>
             )

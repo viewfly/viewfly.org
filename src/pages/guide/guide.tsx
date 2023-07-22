@@ -3,7 +3,7 @@ import { BehaviorSubject } from '@tanbo/stream'
 import { provide } from '@viewfly/core'
 import { Link, RouterOutlet } from '@viewfly/router'
 
-import css from './guide.module.scss'
+import css from './guide.scoped.scss'
 import { ViewUpdateInjectionToken } from './injection-tokens'
 import { AnchorLinks } from './anchor-links'
 import { showNavBtn } from '../../components/header/header'
@@ -17,60 +17,60 @@ export function Guide() {
   })
   return withScopedCSS(css, () => {
     return (
-      <div class="ui-container" css="page">
-        <div css={['nav', { active: showNavBtn() }]}>
+      <div class="ui-container page">
+        <div class={['nav', { active: showNavBtn() }]}>
           <nav>
             <h3>起步</h3>
             <ul>
               <li>
-                <Link to="./" active={css.active} exact>简介</Link>
+                <Link to="./" active="active" exact>简介</Link>
               </li>
               <li>
-                <Link to="./start" active={css.active}>快速上手</Link>
+                <Link to="./start" active="active">快速上手</Link>
               </li>
             </ul>
             <h3>基础</h3>
             <ul>
               <li>
-                <Link to="./component" active={css.active}>组件及状态管理</Link>
+                <Link to="./component" active="active">组件及状态管理</Link>
               </li>
               <li>
-                <Link to="./life-cycle" active={css.active}>生命周期</Link>
+                <Link to="./life-cycle" active="active">生命周期</Link>
               </li>
               <li>
-                <Link to="./router" active={css.active}>路由 <i css="tag">dev</i></Link>
+                <Link to="./router" active="active">路由 <i class="tag">dev</i></Link>
               </li>
               <li>
-                <Link to="./fork" active={css.active}>子应用</Link>
+                <Link to="./fork" active="active">子应用</Link>
               </li>
               <li>
-                <Link to="./scoped-css" active={css.active}>模块化 CSS</Link>
+                <Link to="./scoped-css" active="active">模块化 CSS</Link>
               </li>
               <li>
-                <Link to="./di" active={css.active}>依赖注入</Link>
+                <Link to="./di" active="active">依赖注入</Link>
               </li>
               <li>
-                <Link to="./hooks" active={css.active}>更多 hooks</Link>
+                <Link to="./hooks" active="active">更多 hooks</Link>
               </li>
             </ul>
             <h3>工具</h3>
             <ul>
               <li>
-                <Link to="./cli" active={css.active}>脚手架 <i css="tag">dev</i></Link>
+                <Link to="./cli" active="active">脚手架 <i class="tag">dev</i></Link>
               </li>
             </ul>
             <h3>高级</h3>
             <ul>
               <li>
-                <Link to="./renderer" active={css.active}>渲染及性能优化</Link>
+                <Link to="./renderer" active="active">渲染及性能优化</Link>
               </li>
               <li>
-                <Link to="./test" active={css.active}>单元测试</Link>
+                <Link to="./test" active="active">单元测试</Link>
               </li>
             </ul>
           </nav>
         </div>
-        <div class="doc-content" css="doc-content">
+        <div class="doc-content doc-content">
           <RouterOutlet config={[
             {
               name: '',
@@ -121,9 +121,9 @@ export function Guide() {
               component: import('./docs/test').then(m => m.default)
             }
           ]}/>
-          <p css="ad">官方文档由 Textbus 编写</p>
+          <p class="ad">官方文档由 Textbus 编写</p>
         </div>
-        <div css="links">
+        <div class="links">
           <AnchorLinks/>
         </div>
       </div>

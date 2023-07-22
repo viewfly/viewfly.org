@@ -36,15 +36,7 @@ module.exports = {
       }]
     }, {
       test: /\.s?css$/,
-      use: ['style-loader', {
-        loader: 'css-loader',
-        options: {
-          modules: {
-            auto: /\.module\.s?css$/,
-            localIdentName: '[local]__[hash:base64:5]'
-          },
-        }
-      }, {
+      use: ['style-loader', '@viewfly/devtools/scoped-css-webpack-loader', {
         loader: 'postcss-loader',
         options: {
           postcssOptions: {

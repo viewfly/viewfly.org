@@ -1,7 +1,7 @@
 import { Banner } from '../../components/banner/banner'
 import { withScopedCSS } from '@viewfly/scoped-css'
 
-import css from './home.module.scss'
+import css from './home.scoped.scss'
 
 import haubi from './huabi.png'
 import cs from './38655348.jpeg'
@@ -12,32 +12,32 @@ export function Home() {
     return (
       <>
         <Banner/>
-        <div css="desc">
+        <div class="desc">
           <div class="ui-container">
-            <div class="ui-row" css="group">
+            <div class="ui-row group">
               <div class="ui-col-sm-12 ui-col-lg-6">
-                <div css="icon">
+                <div class="icon">
                   <i class="bi bi-lightning-charge-fill"></i>
                   <h3>快速</h3>
                 </div>
                 <p>在 JavaScript 框架基准测试中，性能超过 Angular 和 React</p>
               </div>
               <div class="ui-col-sm-12 ui-col-lg-6">
-                <div css="icon">
+                <div class="icon">
                   <i class="bi bi-shield-fill-check"></i>
                   <h3>类型安全</h3>
                 </div>
                 <p>完整的 TypeScript 支持，帮助你更简单的完成应用开发</p>
               </div>
               <div class="ui-col-sm-12 ui-col-lg-6">
-                <div css="icon">
+                <div class="icon">
                   <i class="bi bi-brightness-high-fill"></i>
                   <h3>符合直觉</h3>
                 </div>
                 <p>没有 Hook 规则和闭包陷阱，代码会按你的预期执行</p>
               </div>
               <div class="ui-col-sm-12 ui-col-lg-6">
-                <div css="icon">
+                <div class="icon">
                   <i class="bi bi-cursor-fill"></i>
                   <h3>简单</h3>
                 </div>
@@ -47,9 +47,9 @@ export function Home() {
           </div>
         </div>
         <div class="ui-container-fluid">
-          <div class="ui-row" css="stages">
-            <div class="ui-container" css="container">
-              <div class="ui-row" css="group">
+          <div class="ui-row stages">
+            <div class="ui-container container">
+              <div class="ui-row group">
                 <div class="ui-col-sm-8 ui-col-md-4 ui-col-xs-12">
                   <h3>12 KB</h3>
                   <p>Minify+Gzip</p>
@@ -78,11 +78,11 @@ export function Home() {
             </div>
           </div>
         </div>
-        <div class="ui-container" css="authors">
+        <div class="ui-container authors">
           <h2>Contributors</h2>
-          <div css="author-list" class="ui-row">
-            <div css="author-item" class="ui-col-xs-24 ui-col-sm-12 ui-col-md-8">
-              <div css="author-info">
+          <div class="author-list ui-row">
+            <div class="author-item ui-col-xs-24 ui-col-sm-12 ui-col-md-8">
+              <div class="author-info">
                 <div>
                   <img src={haubi} alt=""/>
                 </div>
@@ -91,8 +91,8 @@ export function Home() {
                 <p>Viewfly 为其最新力作，旨在为开发者提供更简单、更轻巧、更易使用前端基础框架。</p>
               </div>
             </div>
-            <div css="author-item" class="ui-col-xs-24 ui-col-sm-12 ui-col-md-8">
-              <div css="author-info">
+            <div class="author-item ui-col-xs-24 ui-col-sm-12 ui-col-md-8">
+              <div class="author-info">
                 <div>
                   <img src={cs} alt=""/>
                 </div>
@@ -100,8 +100,8 @@ export function Home() {
                 <p></p>
               </div>
             </div>
-            <div css="author-item" class="ui-col-xs-24 ui-col-sm-12 ui-col-md-8">
-              <div css="author-info">
+            <div class="author-item ui-col-xs-24 ui-col-sm-12 ui-col-md-8">
+              <div class="author-info">
                 <div>
                   <img src={cg} alt=""/>
                 </div>

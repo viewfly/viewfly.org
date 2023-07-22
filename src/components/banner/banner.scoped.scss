@@ -1,7 +1,6 @@
 @import "../../scss/varibles";
 
 .banner {
-  text-align: center;
   padding-top: 60px;
   padding-bottom: 80px;
   //background: #79b30f;
@@ -142,4 +141,5 @@
 .content {
   position: relative;
   z-index: 1;
+  text-align: left;
 }

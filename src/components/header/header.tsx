@@ -3,7 +3,7 @@ import { withScopedCSS } from '@viewfly/scoped-css'
 import { Link, Navigator } from '@viewfly/router'
 
 import logo from '../../assets/logo.svg'
-import css from './header.module.scss'
+import css from './header.scoped.scss'
 
 export const showNavBtn = useSignal(false)
 
@@ -28,24 +28,24 @@ export function Header() {
   })
   return withScopedCSS(css, () => {
     return (
-      <header css="header">
-        <div css="nav" class="ui-container">
-          <div css="left">
-            <Link css="logo-link" to="/">
-              <img css="logo" src={logo} alt="log"/>
+      <header class="header">
+        <div class="nav ui-container">
+          <div class="left">
+            <Link class="logo-link" to="/">
+              <img class="logo" src={logo} alt="log"/>
               <span>Viewfly</span>
             </Link>
-            <ul css="nav-links">
-              <li><Link to="/" active={css.active} exact>首页</Link></li>
-              <li><Link to="/guide" active={css.active}>开发者文档</Link></li>
+            <ul class="nav-links">
+              <li><Link to="/" active="active" exact>首页</Link></li>
+              <li><Link to="/guide" active="active">开发者文档</Link></li>
               <li><a href="/guide/cli">脚手架</a></li>
             </ul>
           </div>
-          <div css="right">
-            <ul css="nav-links">
-              <li><a href="https://github.com/viewfly/viewfly" target="_blank" css="icon-github"><i class="bi-github"></i></a></li>
+          <div class="right">
+            <ul class="nav-links">
+              <li><a href="https://github.com/viewfly/viewfly" target="_blank" class="icon-github"><i class="bi-github"></i></a></li>
               {
-                isShowNavBtn() ? <li css="nav-btn">
+                isShowNavBtn() ? <li class="nav-btn">
                   <button onClick={(ev) => {
                     ev.stopPropagation()
                     showNavBtn.set(!showNavBtn())

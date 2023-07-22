@@ -1,33 +1,33 @@
 import { Link } from '@viewfly/router'
 import { withScopedCSS } from '@viewfly/scoped-css'
 
-import css from './banner.module.scss'
+import css from './banner.scoped.scss'
 
 export function Banner() {
   return withScopedCSS(css, () => {
     return (
-      <div css="banner" class="ui-container-fluid">
-        <div css="bg">
-          <div css="arc-group">
-            <div css="max"/>
-            <div css="max"/>
-            <div css="max"/>
-            <div css="min"/>
-            <div css="min"/>
-            <div css="min"/>
-            <div css="min"/>
-            <div css="min"/>
-            <div css="min"/>
+      <div class="banner ui-container-fluid">
+        <div class="bg">
+          <div class="arc-group">
+            <div class="max"/>
+            <div class="max"/>
+            <div class="max"/>
+            <div class="min"/>
+            <div class="min"/>
+            <div class="min"/>
+            <div class="min"/>
+            <div class="min"/>
+            <div class="min"/>
           </div>
         </div>
-        <div css="content">
-          <h1 css="name">Viewfly</h1>
-          <div css="slogan">简单、符合直觉的 JavaScript 框架</div>
-          <p css="desc">🚀  回到初心，坚守熟悉的语法，我们不做问题的制造者</p>
+        <div class="ui-container content">
+          <h1 class="name">Viewfly</h1>
+          <div class="slogan">简单、符合直觉的 JavaScript 框架</div>
+          <p class="desc">🚀  回到初心，坚守熟悉的语法，我们不做问题的制造者</p>
           <p>
-            <Link css="btn btn-quick-start" to="/guide" role="button">快速上手</Link>
+            <Link class="btn btn-quick-start" to="/guide" role="button">快速上手</Link>
             &nbsp;&nbsp;&nbsp;
-            <Link css="btn btn-install" to="/guide/start" role="button">安 装</Link>
+            <Link class="btn btn-install" to="/guide/start" role="button">安 装</Link>
           </p>
         </div>
       </div>
