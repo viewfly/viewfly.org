@@ -74,51 +74,51 @@ export function Guide() {
           <RouterOutlet config={[
             {
               name: '',
-              component: import('./start/intro').then(m => m.default)
+              asyncComponent: () => import('./start/intro').then(m => m.default)
             },
             {
               name: 'start',
-              component: import('./start/start').then(m => m.default)
+              asyncComponent: () => import('./start/start').then(m => m.default)
             },
             {
               name: 'component',
-              component: import('./docs/component').then(m => m.default)
+              asyncComponent: () => import('./docs/component').then(m => m.default)
             },
             {
               name: 'life-cycle',
-              component: import('./docs/life-cycle').then(m => m.default)
+              asyncComponent: () => import('./docs/life-cycle').then(m => m.default)
             },
             {
               name: 'di',
-              component: import('./docs/di').then(m => m.default)
+              asyncComponent: () => import('./docs/di').then(m => m.default)
             },
             {
               name: 'router',
-              component: import('./docs/router').then(m => m.default)
+              asyncComponent: () => import('./docs/router').then(m => m.default)
             },
             {
               name: 'fork',
-              component: import('./docs/fork').then(m => m.default)
+              asyncComponent: () => import('./docs/fork').then(m => m.default)
             },
             {
               name: 'cli',
-              component: import('./docs/cli').then(m => m.default)
+              asyncComponent: () => import('./docs/cli').then(m => m.default)
             },
             {
               name: 'scoped-css',
-              component: import('./docs/scoped-css').then(m => m.default)
+              asyncComponent: () => import('./docs/scoped-css').then(m => m.default)
             },
             {
               name: 'hooks',
-              component: import('./docs/hooks').then(m => m.default)
+              asyncComponent: () => import('./docs/hooks').then(m => m.default)
             },
             {
               name: 'renderer',
-              component: import('./docs/renderer').then(m => m.default)
+              asyncComponent: () => import('./docs/renderer').then(m => m.default)
             },
             {
               name: 'test',
-              component: import('./docs/test').then(m => m.default)
+              asyncComponent: () => import('./docs/test').then(m => m.default)
             }
           ]}/>
           <p class="ad">官方文档由 Textbus 编写</p>

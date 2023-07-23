@@ -8,6 +8,9 @@ export default function() {
   return function() {
     return (
       <div ref={ref}><h1>脚手架</h1>
+<tb-alert data-type="danger" class="tb-alert tb-alert-fill tb-alert-danger">
+  <div>Viewfly cli 目前可基本使用，更多功能还在持续完善中，可能会发生破坏性更改，你可以尝鲜使用，也可等 Viewfly 后续的稳定版本再使用。</div>
+</tb-alert>
 <h2>安装</h2>
 <p>通过 &nbsp;npm 安装 Viewfly 的脚手架。</p><pre lang="" theme="starry" class="tb-pre tb-pre-hide-line-number"><div class="tb-pre-content"><div style="width:2.5em" class="tb-code-line-number-bg"></div><div class="tb-code-content"><div class="tb-code-line">npm install @viewfly/cli -g</div></div><span class="tb-pre-lang"></span></div></pre>
 <h2>支持</h2>
