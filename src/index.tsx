@@ -5,4 +5,4 @@ import 'normalize.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './scss/index.scss'
 
-createApp(document.body!, <RootRouter><App/></RootRouter>)
+createApp(<RootRouter><App/></RootRouter>).mount(document.body!)
