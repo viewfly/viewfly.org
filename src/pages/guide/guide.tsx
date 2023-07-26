@@ -47,10 +47,13 @@ export function Guide() {
                 <Link to="./scoped-css" active="active">模块化 CSS</Link>
               </li>
               <li>
+                <Link to="./hooks" active="active">官方 hooks</Link>
+              </li>
+              <li>
                 <Link to="./di" active="active">依赖注入</Link>
               </li>
               <li>
-                <Link to="./hooks" active="active">更多 hooks</Link>
+                <Link to="./global-provide" active="active">全局服务</Link>
               </li>
             </ul>
             <h3>工具</h3>
@@ -63,6 +66,9 @@ export function Guide() {
             <ul>
               <li>
                 <Link to="./renderer" active="active">渲染及性能优化</Link>
+              </li>
+              <li>
+                <Link to="./ssr" active="active">服务端渲染</Link>
               </li>
               <li>
                 <Link to="./test" active="active">单元测试</Link>
@@ -82,43 +88,51 @@ export function Guide() {
             },
             {
               name: 'component',
-              asyncComponent: () => import('./docs/component').then(m => m.default)
+              asyncComponent: () => import('./basic/component').then(m => m.default)
             },
             {
               name: 'life-cycle',
-              asyncComponent: () => import('./docs/life-cycle').then(m => m.default)
+              asyncComponent: () => import('./basic/life-cycle').then(m => m.default)
             },
             {
               name: 'di',
-              asyncComponent: () => import('./docs/di').then(m => m.default)
+              asyncComponent: () => import('./basic/di').then(m => m.default)
             },
             {
               name: 'router',
-              asyncComponent: () => import('./docs/router').then(m => m.default)
+              asyncComponent: () => import('./basic/router').then(m => m.default)
             },
             {
               name: 'fork',
-              asyncComponent: () => import('./docs/fork').then(m => m.default)
-            },
-            {
-              name: 'cli',
-              asyncComponent: () => import('./docs/cli').then(m => m.default)
+              asyncComponent: () => import('./basic/fork').then(m => m.default)
             },
             {
               name: 'scoped-css',
-              asyncComponent: () => import('./docs/scoped-css').then(m => m.default)
+              asyncComponent: () => import('./basic/scoped-css').then(m => m.default)
             },
             {
               name: 'hooks',
-              asyncComponent: () => import('./docs/hooks').then(m => m.default)
+              asyncComponent: () => import('./basic/hooks').then(m => m.default)
+            },
+            {
+              name: 'global-provide',
+              asyncComponent: () => import('./basic/global-provide').then(m => m.default)
+            },
+            {
+              name: 'cli',
+              asyncComponent: () => import('./devkit/cli').then(m => m.default)
             },
             {
               name: 'renderer',
-              asyncComponent: () => import('./docs/renderer').then(m => m.default)
+              asyncComponent: () => import('./advance/renderer').then(m => m.default)
+            },
+            {
+              name: 'ssr',
+              asyncComponent: () => import('./advance/ssr').then(m => m.default)
             },
             {
               name: 'test',
-              asyncComponent: () => import('./docs/test').then(m => m.default)
+              asyncComponent: () => import('./advance/test').then(m => m.default)
             }
           ]}/>
           <p class="ad">官方文档由 Textbus 编写</p>

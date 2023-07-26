@@ -7,7 +7,8 @@ export default function() {
   })
   return function() {
     return (
-      <div ref={ref}><h1>单元测试</h1></div>
+      <div ref={ref}><h1>服务端渲染</h1>
+<p>已列入开发计划，敬请期待。</p></div>
     )
   }
 }
