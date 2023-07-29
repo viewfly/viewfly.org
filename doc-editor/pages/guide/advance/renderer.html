@@ -1,6 +1,7 @@
 <h1>渲染及性能优化</h1>
-<p>Viewfly 目前的 diff 算法是非常高效的。大部分场景我们并不需要关心性能问题。但总有一些场景，数据量特别大，变动又特别频繁。我们可以参考下面的策略进行性能调优。</p>
-<p>Viewfly 采用自上而下的单身数据流方案，当父组件变化时，子组件也会自动渲染。所以我们可以有意识的拆分变动频繁的部分和不常变动的部分为两个组件，并且让两个组件不属于父子或父孙关系，当 Viewfly 在更新 DOM 时，就会跳过没有变化的分支，这可以显著的提高 diff 的效率。</p>
+<p>Viewfly 采用自上而下的单向数据流方案，当父组件变化时，子组件也会自动渲染，同时，Viewfly 也会跳过数据没有数据变更的分支。总体来说，Viewfly 目前的 diff 算法是非常高效的。大部分场景我们并不需要关心性能问题。但总有一些场景，数据量特别大，变动又特别频繁。我们可以参考下面的策略进行性能调优。</p>
+<h2>分支调优</h2>
+<p>我们可以拆分变动频繁的部分和不常变动的部分为两个组件，并且让两个组件不属于父子或父孙关系，当 Viewfly 在更新 DOM 时，就会跳过没有变化的分支，这可以显著的提高 diff 的效率。</p>
 <h2>Key</h2>
 <p>对于列表渲染，我们可以通过给循环生成的节点添加 key 的方式来“优化”性能。相同 key 的元素会直接复用，而不是重新创建或删除。key 的值只可以是字符串字数字，且在相同层级内必须是唯一的。</p><pre lang="Jsx" theme="starry" line-number class="tb-pre"><div class="tb-pre-content"><div style="width:2.5em" class="tb-code-line-number-bg"></div><div class="tb-code-content"><div class="tb-code-line">list.<span class="tb-hl-function">map</span>(item =&gt; {</div><div class="tb-code-line">&nbsp;&nbsp;<span class="tb-hl-keyword">return</span>&nbsp;&lt;<span class="tb-hl-tag">li&nbsp;</span><span class="tb-hl-attr-name">key</span>={item.id}&gt;xxxx&lt;/<span class="tb-hl-tag">li</span>&gt;</div><div class="tb-code-line">})</div></div><span class="tb-pre-lang">Jsx</span></div></pre>
 <tb-alert data-type="primary" class="tb-alert tb-alert-primary">
