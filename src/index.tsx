@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import { createApp } from '@viewfly/platform-browser'
 import { RootRouter } from '@viewfly/router'
 import { App } from './app'
