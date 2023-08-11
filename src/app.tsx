@@ -5,14 +5,14 @@ import { Home } from './pages/home/home'
 import './assets/doc.scss'
 import './app.scss'
 import { Footer } from './components/footer/footer'
-import { inject, onDestroy } from '@viewfly/core'
+import { inject, onUnmounted } from '@viewfly/core'
 
 export function App() {
   const navigator = inject(Navigator)
   const sub = navigator.onUrlChanged.subscribe(() => {
     document.body.scrollTop = document.documentElement.scrollTop = 0
   })
-  onDestroy(() => {
+  onUnmounted(() => {
     sub.unsubscribe()
   })
   return () => {

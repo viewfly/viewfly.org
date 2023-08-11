@@ -1,4 +1,4 @@
-import { inject, onDestroy, onMounted, useSignal } from '@viewfly/core'
+import { inject, onUnmounted, onMounted, useSignal } from '@viewfly/core'
 import { withScopedCSS } from '@viewfly/scoped-css'
 import { Link, Navigator } from '@viewfly/router'
 
@@ -23,7 +23,7 @@ export function Header() {
     isShowNavBtn.set(navigator.pathname.startsWith('/guide'))
   })
 
-  onDestroy(() => {
+  onUnmounted(() => {
     sub.unsubscribe()
   })
   return withScopedCSS(css, () => {
