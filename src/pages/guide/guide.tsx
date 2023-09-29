@@ -79,59 +79,59 @@ export function Guide() {
         <div class="doc-content doc-content">
           <RouterOutlet config={[
             {
-              name: '',
+              path: '',
               asyncComponent: () => import('./start/intro').then(m => m.default)
             },
             {
-              name: 'start',
+              path: 'start',
               asyncComponent: () => import('./start/start').then(m => m.default)
             },
             {
-              name: 'component',
+              path: 'component',
               asyncComponent: () => import('./basic/component').then(m => m.default)
             },
             {
-              name: 'life-cycle',
+              path: 'life-cycle',
               asyncComponent: () => import('./basic/life-cycle').then(m => m.default)
             },
             {
-              name: 'di',
+              path: 'di',
               asyncComponent: () => import('./basic/di').then(m => m.default)
             },
             {
-              name: 'router',
+              path: 'router',
               asyncComponent: () => import('./basic/router').then(m => m.default)
             },
             {
-              name: 'fork',
+              path: 'fork',
               asyncComponent: () => import('./basic/fork').then(m => m.default)
             },
             {
-              name: 'scoped-css',
+              path: 'scoped-css',
               asyncComponent: () => import('./basic/scoped-css').then(m => m.default)
             },
             {
-              name: 'hooks',
+              path: 'hooks',
               asyncComponent: () => import('./basic/hooks').then(m => m.default)
             },
             {
-              name: 'global-provide',
+              path: 'global-provide',
               asyncComponent: () => import('./basic/global-provide').then(m => m.default)
             },
             {
-              name: 'cli',
+              path: 'cli',
               asyncComponent: () => import('./devkit/cli').then(m => m.default)
             },
             {
-              name: 'renderer',
+              path: 'renderer',
               asyncComponent: () => import('./advance/renderer').then(m => m.default)
             },
             {
-              name: 'ssr',
+              path: 'ssr',
               asyncComponent: () => import('./advance/ssr').then(m => m.default)
             },
             {
-              name: 'test',
+              path: 'test',
               asyncComponent: () => import('./advance/test').then(m => m.default)
             }
           ]}/>

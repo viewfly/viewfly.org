@@ -22,11 +22,11 @@ export function App() {
         <main>
           <RouterOutlet config={[
             {
-              name: '',
+              path: '',
               component: Home
             },
             {
-              name: 'guide',
+              path: 'guide',
               asyncComponent: () => import('./pages/guide/guide').then(mod => mod.Guide)
             }
           ]}></RouterOutlet>
