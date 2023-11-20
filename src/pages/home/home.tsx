@@ -51,7 +51,7 @@ export function Home() {
             <div class="ui-container container">
               <div class="ui-row group">
                 <div class="ui-col-sm-8 ui-col-md-4 ui-col-xs-12">
-                  <h3>12 KB</h3>
+                  <h3>8 KB</h3>
                   <p>Minify+Gzip</p>
                 </div>
                 <div class="ui-col-sm-8 ui-col-md-4 ui-col-xs-12">
@@ -63,8 +63,8 @@ export function Home() {
                   <p>没有闭包陷阱</p>
                 </div>
                 <div class="ui-col-sm-8 ui-col-md-4 ui-col-xs-12">
-                  <h3>CSS Modules</h3>
-                  <p>支持模块化 CSS</p>
+                  <h3>CSS Scoped</h3>
+                  <p>支持作用域 CSS</p>
                 </div>
                 <div class="ui-col-sm-8 ui-col-md-4 ui-col-xs-12">
                   <h3>Router</h3>
