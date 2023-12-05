@@ -41,7 +41,7 @@ export function Guide() {
                 <Link to="./router" active="active">路由 <i class="tag">dev</i></Link>
               </li>
               <li>
-                <Link to="./fork" active="active">子应用</Link>
+                <Link to="./portal" active="active">自由节点</Link>
               </li>
               <li>
                 <Link to="./scoped-css" active="active">模块化 CSS</Link>
@@ -103,8 +103,8 @@ export function Guide() {
               asyncComponent: () => import('./basic/router').then(m => m.default)
             },
             {
-              path: 'fork',
-              asyncComponent: () => import('./basic/fork').then(m => m.default)
+              path: 'portal',
+              asyncComponent: () => import('./basic/portal').then(m => m.default)
             },
             {
               path: 'scoped-css',
