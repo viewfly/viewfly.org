@@ -38,7 +38,7 @@ export function Header() {
             <ul class="nav-links">
               <li><Link to="/" active="active" exact>首页</Link></li>
               <li><Link to="/guide" active="active">开发者文档</Link></li>
-              <li><a href="/guide/cli">脚手架</a></li>
+              <li><Link to="/playground" active="active">演练场</Link></li>
             </ul>
           </div>
           <div class="right">

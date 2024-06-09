@@ -1,7 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const glob = require('glob')
+const fs = require('fs')
 const EslintWebpackPlugin = require('eslint-webpack-plugin')
+const webpack = require('webpack')
 const ip = require('ip')
+const MonacoEditorWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -67,6 +71,13 @@ module.exports = {
       template: './public/index.html',
       publicPath: '/',
       favicon: './public/favicon.ico'
+    }),
+    new MonacoEditorWebpackPlugin(),
+    new webpack.DefinePlugin({
+      "process.env.VIEWFLY_TYPES": JSON.stringify({
+        core: fs.readFileSync('./node_modules/@viewfly/core/bundles/index.d.ts').toString(),
+        platformBrowser: fs.readFileSync('./node_modules/@viewfly/platform-browser/bundles/index.d.ts').toString(),
+      })
     })
   ]
 }

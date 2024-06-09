@@ -28,6 +28,10 @@ export function App() {
             {
               path: 'guide',
               asyncComponent: () => import('./pages/guide/guide').then(mod => mod.Guide)
+            },
+            {
+              path: 'playground',
+              asyncComponent: () => import('./playground/playground').then(mod => mod.Playground)
             }
           ]}></RouterOutlet>
         </main>
