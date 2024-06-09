@@ -1,29 +1,40 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
-const EslintWebpackPlugin = require('eslint-webpack-plugin')
+// const EslintWebpackPlugin = require('eslint-webpack-plugin')
 const ip = require('ip')
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-source-map',
   entry: {
     index: path.resolve(__dirname, './src/index.tsx')
   },
   output: {
     path: path.resolve(__dirname, './dist'),
+    filename: '[name]_[hash:8].js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
   },
   devServer: {
     host: ip.address(),
+    historyApiFallback: true,
     static: {
       directory: path.join(__dirname, 'public')
     },
     compress: true,
-    port: 3323,
+    port: 8080,
     hot: true,
-    open: true
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:6666',
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
   },
   module: {
     rules: [{
@@ -33,15 +44,7 @@ module.exports = {
       }]
     }, {
       test: /\.s?css$/,
-      use: ['style-loader', {
-        loader: 'css-loader',
-        options: {
-          modules: {
-            auto: /\.module\.s?css$/,
-            localIdentName: '[local]__[hash:base64:5]'
-          },
-        }
-      }, {
+      use: ['style-loader', '@viewfly/devtools/scoped-css-webpack-loader', {
         loader: 'postcss-loader',
         options: {
           postcssOptions: {
@@ -60,16 +63,35 @@ module.exports = {
         }
       }, 'sass-loader'],
     }, {
+      test: /\.less$/,
+      use: ['style-loader', '@viewfly/devtools/scoped-css-webpack-loader', {
+        loader: 'postcss-loader',
+        options: {
+          postcssOptions: {
+            plugins: [
+              [
+                'postcss-preset-env',
+                {
+                  // Options
+                },
+              ],
+              [
+                'autoprefixer'
+              ]
+            ],
+          }
+        }
+      }, 'less-loader'],
+    }, {
       test: /\.(jpe?g|png|svg|gif)$/,
       type: 'asset'
     }]
   },
   plugins: [
-    new EslintWebpackPlugin({
-      extensions: ['.ts', '.tsx']
-    }),
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: './public/index.html',
+      publicPath: '/',
+      favicon: './public/favicon.ico'
     })
   ]
 }

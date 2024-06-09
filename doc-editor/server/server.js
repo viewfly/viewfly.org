@@ -36,20 +36,20 @@ router.post('/doc/save', context => {
   const html = body.html
 
   const url = path.resolve(__dirname, '../', fileName)
-  const vuePath = path.resolve(__dirname, '../../src/pages/', fileName.replace(/pages\//, '/').replace(/\.html$/, '.tsx'))
+  const vuePath = path.join(__dirname, '../../src/pages/', fileName.replace(/pages[\\/]/, '/').replace(/\.html$/, '.tsx'))
 
   const doc = pretty(html)
   fs.writeFileSync(url, doc)
-  fs.writeFileSync(vuePath, `import { inject, useRef } from '@viewfly/core'
+  fs.writeFileSync(vuePath, `import { inject, createDynamicRef } from '@viewfly/core'
 import { ViewUpdateInjectionToken } from '../injection-tokens'
 export default function() {
   const subject = inject(ViewUpdateInjectionToken)
-  const ref = useRef(node => {
+  const ref = createDynamicRef(node => {
     subject.next(node as HTMLElement)
   })
   return function() {
     return (
-      <div ref={ref}>${doc.replaceAll('<br>', '<br/>').replace(/(<img[^>]+)/g, '$1 alt=""/').replace(/([{}])/g, '{\'$1\'}')}</div>
+      <div ref={ref}>${doc.replaceAll('<br>', '<br/>').replace(/(<img[^>]+)/g, '$1/').replace(/([{}])/g, '{\'$1\'}')}</div>
     )
   }
 }`)
@@ -59,8 +59,8 @@ export default function() {
 })
 
 app
-  .use(router.routes())
-  .use(router.allowedMethods())
+    .use(router.routes())
+    .use(router.allowedMethods())
 
 const port = 6666
 
