@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import { createApp } from '@viewfly/platform-browser'
 import { RouterModule } from '@viewfly/router'
 import { App } from './app'

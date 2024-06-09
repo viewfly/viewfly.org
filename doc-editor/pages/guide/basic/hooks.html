@@ -1,5 +1,24 @@
-<h1>扩展 Hooks</h1>
-<p>hooks 包内提供了 Viewfly 官网提供的一系列帮助开发者更方便开发应用的 hooks，你可以自由选择使用。</p>
-<h2>useProduce()</h2>
-<p>useProduce 提供了复杂对象的响应式管理能力。</p><pre lang="JavaScript" theme="starry" line-number class="tb-pre"><div class="tb-pre-content"><div style="width:2.5em" class="tb-code-line-number-bg"></div><div class="tb-code-content"><div class="tb-code-line"><span class="tb-hl-keyword">import</span>&nbsp;{ useProduce }&nbsp;<span class="tb-hl-keyword">from</span>&nbsp;<span class="tb-hl-string">'@viewfly/hooks'</span></div><div class="tb-code-line"><br></div><div class="tb-code-line"><span class="tb-hl-keyword">const</span>&nbsp;[signal, update] =&nbsp;<span class="tb-hl-function">useProduce</span>({</div><div class="tb-code-line">&nbsp;&nbsp;name:&nbsp;<span class="tb-hl-string">'Bob'</span>,</div><div class="tb-code-line">&nbsp;&nbsp;age:&nbsp;<span class="tb-hl-number">25</span></div><div class="tb-code-line">})</div><div class="tb-code-line"><br></div><div class="tb-code-line"><span class="tb-hl-comment">// 获取数据</span></div><div class="tb-code-line">console.<span class="tb-hl-function">log</span>(<span class="tb-hl-function">signal</span>().name)&nbsp;<span class="tb-hl-comment">// Bob</span></div><div class="tb-code-line"><br></div><div class="tb-code-line"><span class="tb-hl-comment">// 更新数据</span></div><div class="tb-code-line"><span class="tb-hl-function">update</span>(draft =&gt; {</div><div class="tb-code-line">&nbsp;&nbsp;draft.name =&nbsp;<span class="tb-hl-string">'Jack'</span></div><div class="tb-code-line">})</div><div class="tb-code-line"><br></div><div class="tb-code-line">console.<span class="tb-hl-function">log</span>(<span class="tb-hl-function">signal</span>().name)&nbsp;<span class="tb-hl-comment">// Jack</span></div></div><span class="tb-pre-lang">JavaScript</span></div></pre>
-<p><br></p>
+<div data-comopnent="RootComponent" class="xnote-root">
+  <div data-placeholder="" class="xnote-content">
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h1">扩展 Hooks</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>hooks 包内提供了 Viewfly 官网提供的一系列帮助开发者更方便开发应用的 hooks，你可以自由选择使用。</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h2">useProduce()</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>useProduce 提供了复杂对象的响应式管理能力。</div>
+    </div>
+    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
+      <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{ useProduce }&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/hooks'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;[signal, update] =&nbsp;<span class="hljs-title function_">useProduce</span>({</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">name</span>:&nbsp;<span class="hljs-string">'Bob'</span>,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">age</span>:&nbsp;<span class="hljs-number">25</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">})</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// 获取数据</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">signal</span>().<span class="hljs-property">name</span>)&nbsp;<span class="hljs-comment">// Bob</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// 更新数据</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-title function_">update</span>(<span class="hljs-function"><span class="hljs-params">draft</span>&nbsp;=&gt;</span>&nbsp;{</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;draft.<span class="hljs-property">name</span>&nbsp;=&nbsp;<span class="hljs-string">'Jack'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">})</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">signal</span>().<span class="hljs-property">name</span>)&nbsp;<span class="hljs-comment">// Jack</span></span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+      </div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div><br></div>
+    </div>
+  </div>
+</div>

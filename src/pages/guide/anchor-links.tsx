@@ -1,10 +1,10 @@
 import { withScopedCSS } from '@viewfly/scoped-css'
-import { inject, onMounted, useSignal } from '@viewfly/core'
+import { inject, onMounted, createSignal } from '@viewfly/core'
 import { delay, fromEvent } from '@tanbo/stream'
+import { Link, Router } from '@viewfly/router'
 
 import css from './anchor-links.scoped.scss'
 import { ViewUpdateInjectionToken } from './injection-tokens'
-import { Link, Router } from '@viewfly/router'
 
 interface LinkConfig {
   source: HTMLElement
@@ -17,12 +17,8 @@ export function AnchorLinks() {
   const subject = inject(ViewUpdateInjectionToken)
   const router = inject(Router)
 
-  router.onRefresh.subscribe(() => {
-    console.log(router)
-  })
-
-  const links = useSignal<LinkConfig[]>([])
-  const currentLink = useSignal<HTMLElement | null>(null)
+  const links = createSignal<LinkConfig[]>([])
+  const currentLink = createSignal<HTMLElement | null>(null)
   let hashChangeIsFromSelf = false
 
   function findCurrent() {
@@ -64,15 +60,20 @@ export function AnchorLinks() {
       if (!ev) {
         return
       }
-      const newLinks = Array.from(ev.children).filter(i => {
-        return location.pathname.indexOf('/api') === 0 ? /h[1-3]/i.test(i.tagName) : /h[1-6]/i.test(i.tagName)
-      }).map((i) => {
+      const elements = Array.from(ev.querySelectorAll('[class*=xnote-h]')).filter(i => {
+        return /xnote-h[1-6]/.test(i.className)
+      })
+
+      if (elements.length === 0) {
+        return
+      }
+      const newLinks = elements.map((i) => {
         const text = (i as HTMLElement).innerText
         return {
           label: text,
           link: text.replace(/\s/g, '-'),
           source: i as HTMLElement,
-          level: i.tagName.toLowerCase()
+          level: i.className.substring(6).toLowerCase()
         }
       })
 
@@ -91,12 +92,12 @@ export function AnchorLinks() {
         {
           links().map(item => {
             return (
-              <Link to={'.' + router.path} fragment={item.label} onClick={() => {
+              <Link onClick={() => {
                 setTimeout(() => scrollIntoView(item))
               }
               } class={['level-' + item.level, 'ui-anchor-link', {
                 'ui-active': item.source === currentLink()
-              }]}>
+              }]} to={'.' + router.path} fragment={item.label}>
                 <div class="ui-anchor-link-line"></div>
                 {item.label}
               </Link>

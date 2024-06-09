@@ -1,6 +1,6 @@
 import { withScopedCSS } from '@viewfly/scoped-css'
 import { BehaviorSubject } from '@tanbo/stream'
-import { inject, withAnnotation } from '@viewfly/core'
+import { withAnnotation } from '@viewfly/core'
 import { Link, RouterOutlet } from '@viewfly/router'
 
 import css from './guide.scoped.scss'
@@ -37,7 +37,7 @@ export const Guide = withAnnotation({
                 <Link to="./life-cycle" active="active">生命周期</Link>
               </li>
               <li>
-                <Link to="./router" active="active">路由 <i class="tag">dev</i></Link>
+                <Link to="./router" active="active">路由</Link>
               </li>
               <li>
                 <Link to="./portal" active="active">自由节点</Link>
@@ -134,7 +134,7 @@ export const Guide = withAnnotation({
               asyncComponent: () => import('./advance/test').then(m => m.default)
             }
           ]}/>
-          <p class="ad">官方文档由 Textbus 编写</p>
+          <p class="ad">官方文档由 <a href="https://github.com/textbus/xnote" target="_blank">xnote</a> 编写</p>
         </div>
         <div class="links">
           <AnchorLinks/>
