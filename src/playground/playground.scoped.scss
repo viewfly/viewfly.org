@@ -21,8 +21,9 @@
 .tab-bar {
   height: 40px;
   border-bottom: 1px solid $color-gray-light;
-  display: flex;
+  //display: flex;
   justify-content: left;
+  display: none;
 
   &-item {
     text-align: center;

@@ -2,26 +2,15 @@ import { createRef, onMounted } from '@viewfly/core'
 import * as monaco from 'monaco-editor'
 import { MonacoJsxSyntaxHighlight, getWorker } from 'monaco-jsx-syntax-highlight'
 import { withScopedCSS } from '@viewfly/scoped-css'
-import { transform } from '@babel/standalone'
 
 import css from './editor.scoped.scss'
 
-const defaultValue = `import { createSignal } from '@viewfly/core'
+export interface EditorProps {
+  code: string,
+  onChange(code: string): void
+}
 
-const count = createSignal(0)
-
-export default function App() {
-  return () => (
-    <div>
-      <div>{count()}</div>
-      <button onClick={() => {
-          count.set(count() + 1)
-      }}>click me</button>
-    </div>
-  )
-}`
-
-export function Editor() {
+export function Editor(props: EditorProps) {
   const editorRef = createRef<HTMLElement>()
 
   const types: Record<string, string> = process.env.VIEWFLY_TYPES as any || {}
@@ -48,7 +37,7 @@ export function Editor() {
     const monacoJsxSyntaxHighlight = new MonacoJsxSyntaxHighlight(getWorker(), monaco)
 
     const model = monaco.editor.createModel(
-      defaultValue,
+      props.code,
       'typescript',
       monaco.Uri.parse('App.tsx')
     )
@@ -57,21 +46,17 @@ export function Editor() {
       automaticLayout: true,
       fontSize: 14,
       minimap: { enabled: false },
-      contextmenu: false
+      contextmenu: false,
+      padding: {
+        top: 10
+      }
     })
     editor.setModel(model)
 
     const { highlighter, dispose } = monacoJsxSyntaxHighlight.highlighterBuilder({ editor: editor })
     highlighter()
     editor.onDidChangeModelContent(() => {
-      const d = transform(editor.getValue(), {
-        presets: [['react', {
-          runtime: 'automatic',
-          importSource: '@viewfly/core'
-        }], 'typescript'],
-        filename: 'App.tsx'
-      })
-      console.log(d.code)
+      props.onChange(editor.getValue())
     })
 
     return () => {

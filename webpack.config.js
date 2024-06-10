@@ -82,6 +82,12 @@ module.exports = {
       "process.env.VIEWFLY_TYPES": JSON.stringify({
         core: fs.readFileSync('./node_modules/@viewfly/core/bundles/index.d.ts').toString(),
         platformBrowser: fs.readFileSync('./node_modules/@viewfly/platform-browser/bundles/index.d.ts').toString(),
+      }),
+      "process.env.SOURCE_CODE": JSON.stringify({
+        reflectMetadata: fs.readFileSync('./node_modules/reflect-metadata/Reflect.js').toString(),
+        core: fs.readFileSync('./node_modules/@viewfly/core/bundles/index.esm.js').toString(),
+        runtime: fs.readFileSync('./node_modules/@viewfly/core/jsx-runtime/index.esm.js').toString(),
+        platformBrowser: fs.readFileSync('./node_modules/@viewfly/platform-browser/bundles/index.esm.js').toString(),
       })
     })
   ]
