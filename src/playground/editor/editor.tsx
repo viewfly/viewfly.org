@@ -2,6 +2,7 @@ import { createRef, onMounted } from '@viewfly/core'
 import * as monaco from 'monaco-editor'
 import { MonacoJsxSyntaxHighlight, getWorker } from 'monaco-jsx-syntax-highlight'
 import { withScopedCSS } from '@viewfly/scoped-css'
+import { transform } from '@babel/standalone'
 
 import css from './editor.scoped.scss'
 
@@ -63,7 +64,14 @@ export function Editor() {
     const { highlighter, dispose } = monacoJsxSyntaxHighlight.highlighterBuilder({ editor: editor })
     highlighter()
     editor.onDidChangeModelContent(() => {
-      console.log(editor.getValue())
+      const d = transform(editor.getValue(), {
+        presets: [['react', {
+          runtime: 'automatic',
+          importSource: '@viewfly/core'
+        }], 'typescript'],
+        filename: 'App.tsx'
+      })
+      console.log(d.code)
     })
 
     return () => {

@@ -19,7 +19,12 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+  },
+  stats: {
+    warningsFilter: warning => {
+      return !/babel\.js/.test(warning)
+    }
   },
   devServer: {
     host: ip.address(),

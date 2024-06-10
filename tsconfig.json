@@ -3,6 +3,7 @@
     "target": "es6",
     "module": "esnext",
     "strict": true,
+    "allowJs": true,
     "moduleResolution": "node",
     "sourceMap": true,
     "useDefineForClassFields": true,
