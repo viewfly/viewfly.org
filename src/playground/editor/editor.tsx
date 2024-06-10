@@ -60,6 +60,7 @@ export function Editor(props: EditorProps) {
     })
 
     return () => {
+      model.dispose()
       dispose()
       editor.dispose()
     }
