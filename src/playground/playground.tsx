@@ -27,26 +27,36 @@ createApp(<App/>).mount(document.getElementById('app'))
 
 export function Playground() {
   const code = createSignal(defaultValue)
-  function transformCode() {
-    const result = transform(code(), {
-      presets: [['react', {
-        runtime: 'automatic',
-        importSource: '@viewfly/core'
-      }], 'typescript'],
-      filename: 'App.tsx'
-    })
 
-    return result.code || ''
+  let prevCode = ''
+
+  function transformCode() {
+    try {
+      const result = transform(code(), {
+        presets: [['react', {
+          runtime: 'automatic',
+          importSource: '@viewfly/core'
+        }], 'typescript'],
+        filename: 'App.tsx'
+      })
+
+      prevCode = result.code || ''
+      return prevCode
+    } catch (e) {
+      const errorJSON = JSON.parse(JSON.stringify(e))
+      return prevCode + `document.getElementById('console').innerText = \`${JSON.stringify(errorJSON, null, 2)}\``
+    }
   }
 
   function updateCode(sourceCode: string) {
     code.set(sourceCode)
   }
+
   const viewflyCode: Record<string, string> = process.env.SOURCE_CODE as any || {}
-  const coreURL = URL.createObjectURL(new Blob([viewflyCode.core], {type: 'application/javascript'}))
-  const runtimeURL = URL.createObjectURL(new Blob([viewflyCode.runtime], {type: 'application/javascript'}))
-  const browserURL = URL.createObjectURL(new Blob([viewflyCode.platformBrowser], {type: 'application/javascript'}))
-  const reflectMetadataURL = URL.createObjectURL(new Blob([viewflyCode.reflectMetadata], {type: 'application/javascript'}))
+  const coreURL = URL.createObjectURL(new Blob([viewflyCode.core], { type: 'application/javascript' }))
+  const runtimeURL = URL.createObjectURL(new Blob([viewflyCode.runtime], { type: 'application/javascript' }))
+  const browserURL = URL.createObjectURL(new Blob([viewflyCode.platformBrowser], { type: 'application/javascript' }))
+  const reflectMetadataURL = URL.createObjectURL(new Blob([viewflyCode.reflectMetadata], { type: 'application/javascript' }))
   return withScopedCSS(css, () => {
     return (
       <div class="playground">

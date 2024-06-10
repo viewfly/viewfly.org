@@ -30,9 +30,18 @@ export function Preview(props: PreviewProps) {
       }
     }
   </script>
+  <style>
+  #console {
+    color: red;
+    padding: 10px;
+    font-size: 14px;
+    font-family: Microsoft YaHei Mono, Menlo, Monaco, Consolas, Courier New, monospace;
+  }
+  </style>
 </head>
 <body>
 <div id="app"></div>
+<pre id="console"></pre>
 <script type="module">
   ${props.code}
   </script>
