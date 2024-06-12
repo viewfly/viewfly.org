@@ -1,8 +1,6 @@
 import { withScopedCSS } from '@viewfly/scoped-css'
 import { createSignal } from '@viewfly/core'
 
-import { Editor } from './editor/editor'
-
 import css from './playground.scoped.scss'
 import { Preview } from './preview/preview'
 
@@ -28,9 +26,17 @@ createApp(<App/>).mount(document.getElementById('app'))
 export function Playground() {
   const code = createSignal(defaultValue)
   const babel = createSignal<any>(null)
+  let runtimeLibrary: Record<string, string> = {}
+  let Editor: any
 
-  import('@babel/standalone').then(b => {
+  Promise.all([
+    import('@babel/standalone'),
+    import('./lib'),
+    import('./editor/editor'),
+  ]).then(([b, lib, editor]) => {
     babel.set(b)
+    runtimeLibrary = lib.getLibUrl()
+    Editor = editor.Editor
   })
 
   let prevCode = ''
@@ -57,11 +63,6 @@ export function Playground() {
     code.set(sourceCode)
   }
 
-  const viewflyCode: Record<string, string> = process.env.SOURCE_CODE as any || {}
-  const coreURL = URL.createObjectURL(new Blob([viewflyCode.core], { type: 'application/javascript' }))
-  const runtimeURL = URL.createObjectURL(new Blob([viewflyCode.runtime], { type: 'application/javascript' }))
-  const browserURL = URL.createObjectURL(new Blob([viewflyCode.platformBrowser], { type: 'application/javascript' }))
-  const reflectMetadataURL = URL.createObjectURL(new Blob([viewflyCode.reflectMetadata], { type: 'application/javascript' }))
 
   return withScopedCSS(css, () => {
     if (!babel()) {
@@ -107,10 +108,10 @@ export function Playground() {
           <div class="workbench">
             <Preview
               code={transformCode()}
-              reflectMetadata={reflectMetadataURL}
-              viewflyCore={coreURL}
-              viewflyJSXRuntime={runtimeURL}
-              viewflyBrowser={browserURL}/>
+              reflectMetadata={runtimeLibrary.reflectMetadataURL}
+              viewflyCore={runtimeLibrary.coreURL}
+              viewflyJSXRuntime={runtimeLibrary.runtimeURL}
+              viewflyBrowser={runtimeLibrary.browserURL}/>
           </div>
         </div>
       </div>
