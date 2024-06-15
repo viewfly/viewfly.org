@@ -55,8 +55,15 @@
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>Viewfly 的更新本质是采用 === 运算符判断 signal.set() 传入的值和原来的值是否相等，如果不相等则触发更新，所以，当我们使用 Signal 管理复杂对象时，每一次 set 都应当保证传入的是一个全新的对象。</div>
     </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div><strong>提示</strong>：直接使用 Signal 管理复杂对象时，可能需要每一次都解构赋值，这在实际开发中是比较麻烦的，Viewfly 还提供了一个扩展库，即：@viewfly/hooks，hooks 库内有专为管理复杂对象而封装的&nbsp;<a href="https://viewfly.org/guide/hooks" target="_blank">useProduce</a>&nbsp;函数，可以更方便的管理复杂对象。</div>
+    <div data-component="HighlightBoxComponent" data-icon="" class="xnote-highlight-box">
+      <div class="xnote-highlight-box-left">
+        <div class="xnote-highlight-box-icon"><button type="button">❤️</button></div>
+      </div>
+      <div class="xnote-highlight-box-content">
+        <div data-component="ParagraphComponent" class="xnote-paragraph">
+          <div><strong>提示</strong>：直接使用 Signal 管理复杂对象时，可能需要每一次都解构赋值，这在实际开发中是比较麻烦的，Viewfly 还提供了一个扩展库，即：<strong>@viewfly/hooks</strong>，hooks 库内有专为管理复杂对象而封装的&nbsp;<a href="https://viewfly.org/guide/hooks" target="_blank">useProduce</a>&nbsp;函数，可以更方便的管理复杂对象。</div>
+        </div>
+      </div>
     </div>
     <blockquote data-component="BlockquoteComponent" class="xnote-blockquote">
       <div>
@@ -64,7 +71,7 @@
           <div class="xnote-h3"><span style="color:rgb(121, 179, 15)">Viewfly 的组件是如何实现更新的？</span></div>
         </div>
         <div data-component="ParagraphComponent" class="xnote-paragraph">
-          <div>Viewfly 采用依赖收集的方式实现组件更新，当 Viewfly 调用渲染函数时，会记录渲染过程中使用到的 Siganl 并记录下来，当这些记录下来的一个或多个 Signal 数据产生变化时，则会触发组件重新渲染。需要注意的是，组件的渲染是异步的，所以当你改变了某一个 Signal 的值时，并不能立即获取到最新的渲染结果。</div>
+          <div>Viewfly 采用依赖收集的方式实现组件更新，当 Viewfly 调用渲染函数时，会记录渲染过程中使用到的 Siganl，当这些记录下来的一个或多个 Signal 数据产生变化时，则会触发组件重新渲染。需要注意的是，组件的渲染是异步的，所以当你改变了某一个 Signal 的值时，并不能立即获取到最新的渲染结果。</div>
         </div>
         <div data-component="ParagraphComponent" class="xnote-paragraph">
           <div>下面的组件会间隔一秒更新一次，并在控制台打印日志。</div>
@@ -104,8 +111,15 @@
         <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">click</span>(<span class="hljs-params"></span>) {</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'clicked'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&lt;div onClick={click}&gt;&lt;/div&gt;</span></div></pre><span class="xnote-source-code-lang">Tsx/Jsx</span>
       </div>
     </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div><strong>提示</strong>：不要在事件绑定的回调函数上加括号&nbsp;<code class="xnote-code">()</code>&nbsp;,否则 Viewfly 接收到的将是回调函数的返回值，除非你明确的知道，就是要这么做。</div>
+    <div data-component="HighlightBoxComponent" data-icon="❗" class="xnote-highlight-box">
+      <div class="xnote-highlight-box-left">
+        <div class="xnote-highlight-box-icon"><button type="button">❗</button></div>
+      </div>
+      <div class="xnote-highlight-box-content">
+        <div data-component="ParagraphComponent" class="xnote-paragraph">
+          <div><strong>提示</strong>：不要在事件绑定的回调函数上加括号&nbsp;<code class="xnote-code">()</code>&nbsp;,否则 Viewfly 接收到的将是回调函数的返回值，除非你明确的知道，就是要这么做。</div>
+        </div>
+      </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div class="xnote-h3">条件渲染</div>
@@ -119,7 +133,7 @@
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>条件判断除了可以返回虚拟 DOM 节点外，也可以返回字符串或 null，返回 null，<strong style="color:rgb(121, 179, 15)">Viewfly 会忽略 null 和 undefiend 的渲染。</strong></div>
+      <div>条件判断除了可以返回虚拟 DOM 节点外，也可以返回字符串或 null，返回 null，<strong style="color:rgb(121, 179, 15)">Viewfly 会忽略 null 、undefiend &nbsp;和 boolean 值的渲染。</strong></div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div class="xnote-h3">循环渲染</div>
@@ -217,8 +231,15 @@
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>Fragment 不仅可以在循环中使用，也可在以其它地方使用，甚至组件的根节点，也可以是一个 Fragment。</div>
     </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div><strong>小提示：</strong>Fragment 本质是一个组件，它由 Viewfly 内核实现，Fragment 不生成任何 DOM 节点，也没有任何功能。仅仅是作为一个组装一组子节点的语法糖。</div>
+    <div data-component="HighlightBoxComponent" data-icon="💡" class="xnote-highlight-box">
+      <div class="xnote-highlight-box-left">
+        <div class="xnote-highlight-box-icon"><button type="button">💡</button></div>
+      </div>
+      <div class="xnote-highlight-box-content">
+        <div data-component="ParagraphComponent" class="xnote-paragraph">
+          <div><strong>提示：</strong>Fragment 本质是一个组件，它由 Viewfly 内核实现，Fragment 不生成任何 DOM 节点，也没有任何功能。仅仅是作为一个组装一组子节点的语法糖。</div>
+        </div>
+      </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div class="xnote-h1">组件通信</div>
@@ -366,8 +387,15 @@
         <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;unListen =&nbsp;<span class="hljs-title function_">watch</span>(signal,&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;timer =&nbsp;<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span>&nbsp;{</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">// do something...</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;},&nbsp;<span class="hljs-number">1000</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">clearTimeout</span>(timer)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">})</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// do something</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-title function_">unListen</span>()</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
       </div>
     </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div><strong>提示</strong>：如果 watch 声明在组件内，组件会在销毁时，自动清理 watch 的监听。等同于 Viewfly 自动调用了 watch 返回的函数。</div>
+    <div data-component="HighlightBoxComponent" data-icon="" class="xnote-highlight-box">
+      <div class="xnote-highlight-box-left">
+        <div class="xnote-highlight-box-icon"><button type="button">❤️</button></div>
+      </div>
+      <div class="xnote-highlight-box-content">
+        <div data-component="ParagraphComponent" class="xnote-paragraph">
+          <div><strong>提示</strong>：如果 watch 声明在组件内，组件会在销毁时，自动清理 watch 的监听。等同于 Viewfly 自动调用了 watch 返回的函数。</div>
+        </div>
+      </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div class="xnote-h2">createDerived() 派生值</div>
@@ -464,10 +492,10 @@
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2"><span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">createRef()</span></div>
+      <div class="xnote-h2"><span style="background-color:rgb(255, 255, 255)">createRef()</span></div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div><span style="background-color:rgb(255, 255, 255);color:rgb(73, 80, 96)">createRef 可以在组件渲染完成时，通过 current 属性获取到对应的组件实现或 DOM 节点。</span></div>
+      <div><span style="background-color:rgb(255, 255, 255)">createRef 可以在组件渲染完成时，通过 current 属性获取到对应的组件实现或 DOM 节点。</span></div>
     </div>
     <div data-lang="Tsx" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
       <div class="xnote-source-code-container hljs xnote-source-code-auto-break">

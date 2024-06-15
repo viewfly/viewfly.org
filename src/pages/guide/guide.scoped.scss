@@ -93,8 +93,10 @@
     font-family: Menlo, Consolas, "Source Code Pro", Monaco, "Microsoft YaHei";
   }
 
-  h2, h3, h4, h5, h6 {
-    margin-top: 2em;
+  ::v-deep {
+    .xnote-h2, .xnote-h3, .xnote-h4, .xnote-h5, .xnote-h6 {
+      margin-top: 1.6em;
+    }
   }
 }
 

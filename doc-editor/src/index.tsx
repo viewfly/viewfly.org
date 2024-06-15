@@ -117,17 +117,17 @@ export function App() {
         <div class="right">
           {
             !hasTouchedEditorItem() && <p
-                  style="color: #3eaf7c; margin-left: 10px;"
-              >请在左侧条目中选择一个编辑项以启动编辑器</p>
+              style="color: #3eaf7c; margin-left: 10px;"
+            >请在左侧条目中选择一个编辑项以启动编辑器</p>
           }
           <div class="editor" ref={editorRef}></div>
           {
-            isEditorActivated() && <p>
-                  <button type="button"
-                          onClick={save} class="save-button">保存
-                  </button>
-                  <span class={['save-tip', tipSaveStyle()]}>保存成功!（温馨提示：可以同过快捷键`ctrl+s`进行快速保存哦）</span>
-              </p>
+            isEditorActivated() && <p class="save-wrap">
+              <button type="button"
+                      onClick={save} class="save-button">保存
+              </button>
+              <span class={['save-tip', tipSaveStyle()]}>保存成功!（温馨提示：可以同过快捷键`ctrl+s`进行快速保存哦）</span>
+            </p>
           }
         </div>
       </div>

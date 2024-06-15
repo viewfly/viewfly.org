@@ -75,7 +75,7 @@ export const Guide = withAnnotation({
             </ul>
           </nav>
         </div>
-        <div class="doc-content doc-content">
+        <div class="doc-content">
           <RouterOutlet config={[
             {
               path: '',
