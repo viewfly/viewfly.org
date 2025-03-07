@@ -7,7 +7,7 @@ export default function() {
   })
   return function() {
     return (
-      <div ref={ref}><div data-comopnent="RootComponent" class="xnote-root">
+      <div ref={ref}><div dir="auto" data-component="RootComponent" style="padding-bottom:40px" class="xnote-root">
   <div data-placeholder="" class="xnote-content">
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div class="xnote-h1">依赖注入</div>
@@ -43,7 +43,7 @@ export default function() {
       <div class="xnote-h2">基本使用</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>Viewfly 提供了 provide 和 inject 两个函数，用于在组件渲染上下文中实现跨组件通讯能力。</div>
+      <div>Viewfly 提供了 withAnnotation 和 inject 两个函数，用于在组件渲染上下文中实现跨组件通讯能力。</div>
     </div>
     <div data-lang="Tsx" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
       <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
@@ -69,6 +69,17 @@ export default function() {
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>Viewfly 的依赖注入实现，基本和 Angular 类似，如果你有 Angular 的使用经验，你完全可以照搬原来的经验。当然，没有也没关系，Viewfly 的依赖注入 API 简单多了</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h2">自定义上下文</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>你还可以通过 createContext 函数创建一个上下文组件，组件内的所有后代组件都可以通过 inject 函数获取到上下文提供的内容。</div>
+    </div>
+    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
+      <div class="xnote-source-code-container hljs">
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">User</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;name =&nbsp;<span class="hljs-string">'张三'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">MyContext</span>&nbsp;=&nbsp;<span class="hljs-title function_">createContext</span>([{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">provide</span>:&nbsp;<span class="hljs-title class_">User</span>,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">useValue</span>:&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">User</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}])</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">Child</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;user =&nbsp;<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">User</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{'{'}user.name{'}'}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;(</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyContext</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Child</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">MyContext</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+      </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div class="xnote-h2">依赖查找流程</div>

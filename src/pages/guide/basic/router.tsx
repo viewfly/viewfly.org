@@ -7,13 +7,10 @@ export default function() {
   })
   return function() {
     return (
-      <div ref={ref}><div data-comopnent="RootComponent" class="xnote-root">
+      <div ref={ref}><div dir="auto" data-component="RootComponent" style="padding-bottom:40px" class="xnote-root">
   <div data-placeholder="" class="xnote-content">
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div class="xnote-h1">路由</div>
-    </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>Viewfly 路由目前可基本使用，更多功能还在持续完善中，可能会发生破坏性更改，你可以尝鲜使用，也可等 Viewfly 后续的稳定版本再使用。</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>通过 npm 安装路由模块。</div>
@@ -63,7 +60,23 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div><br/></div>
+      <div class="xnote-h2">路由拦截</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>在初始化路由模块时，可以直接添加拦截器。</div>
+    </div>
+    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
+      <div class="xnote-source-code-container hljs">
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">RouterModule</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/router'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;routerModule =&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">RouterModule</span>(<span class="hljs-string">'/'</span>, {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">beforeEach</span>(<span class="hljs-params">current, nextParams, next</span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(current, nextParams)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-title function_">next</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'},</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">afterEach</span>(<span class="hljs-params">params</span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(params)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'})</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-title function_">createApp</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>/&gt;</span></span>).<span class="hljs-title function_">use</span>(routerModule).<span class="hljs-title function_">mount</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'#app'</span>)</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+      </div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h2">重定向</div>
+    </div>
+    <div data-lang="Tsx" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
+      <div class="xnote-source-code-container hljs">
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&lt;<span class="hljs-title class_">RouterOuelet</span>&nbsp;config=[{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">path</span>:&nbsp;<span class="hljs-string">'page'</span>,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-comment">// 可以直接配置一个字符串，或用函数返回一个新的路由</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-comment">// redirectTo: 'page1'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">redirectTo</span>(<span class="hljs-params">path</span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-string">'page1'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}]&gt;&lt;/<span class="hljs-title class_">RouterOutlet</span>&gt;</span></div></pre><span class="xnote-source-code-lang">Tsx/Jsx</span>
+      </div>
     </div>
   </div>
 </div></div>
