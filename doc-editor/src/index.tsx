@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { Editor } from '@textbus/xnote'
 import { debounceTime, merge, Subscription } from '@tanbo/stream'
-import { createRef, createSignal, onUnmounted } from '@viewfly/core'
-import { useProduce } from '@viewfly/hooks'
+import { createRef, createSignal, onUnmounted, reactive } from '@viewfly/core'
 import { createApp } from '@viewfly/platform-browser'
 import '@textbus/xnote/bundles/index.css'
 
@@ -12,7 +11,7 @@ import { componentLoaders } from './browser'
 export function App() {
   const editorRef = createRef<HTMLElement>()
 
-  const [viewModel, updateViewModel] = useProduce({
+  const viewModel = reactive({
     pages: [] as string[],
     currentPath: ''
   })
@@ -30,9 +29,7 @@ export function App() {
 
   let editor: Editor | null = null
   axios.get('/api/tree').then(response => {
-    updateViewModel(draft => {
-      draft.pages = response.data
-    })
+    viewModel.pages = response.data
   })
 
   function edit(path: string) {
@@ -41,9 +38,7 @@ export function App() {
     axios.get('/api/doc/get', {
       params: { path }
     }).then(response => {
-      updateViewModel(draft => {
-        draft.currentPath = path
-      })
+      viewModel.currentPath = path
       removeOldEditor()
       createNewEditor(response)
     })
@@ -53,7 +48,7 @@ export function App() {
     if (editor?.isReady) {
       const html = editor.getHTML()
       axios.post('/api/doc/save', {
-        path: viewModel().currentPath,
+        path: viewModel.currentPath,
         html
       }).then(() => {
         // 保存成功
@@ -79,7 +74,7 @@ export function App() {
     sub.unsubscribe()
   })
 
-  function createNewEditor(response: { data: { doc: string } }) {
+  function createNewEditor(response: {data: {doc: string}}) {
     sub.unsubscribe()
     editor = new Editor({
       content: response.data.doc,
@@ -101,7 +96,7 @@ export function App() {
       <div class="container">
         <div class="nav">
           {
-            viewModel().pages.map(path => {
+            viewModel.pages.map(path => {
               return (
                 <div>
                   <a

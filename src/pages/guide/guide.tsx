@@ -34,6 +34,9 @@ export const Guide = withAnnotation({
                 <Link to="./component" active="active">组件及状态管理</Link>
               </li>
               <li>
+                <Link to="./comm" active="active">组件通信</Link>
+              </li>
+              <li>
                 <Link to="./life-cycle" active="active">生命周期</Link>
               </li>
               <li>
@@ -44,9 +47,6 @@ export const Guide = withAnnotation({
               </li>
               <li>
                 <Link to="./scoped-css" active="active">模块化 CSS</Link>
-              </li>
-              <li>
-                <Link to="./hooks" active="active">官方 hooks</Link>
               </li>
               <li>
                 <Link to="./di" active="active">依赖注入</Link>
@@ -90,6 +90,10 @@ export const Guide = withAnnotation({
               asyncComponent: () => import('./basic/component').then(m => m.default)
             },
             {
+              path: 'comm',
+              asyncComponent: () => import('./basic/comm').then(m => m.default)
+            },
+            {
               path: 'life-cycle',
               asyncComponent: () => import('./basic/life-cycle').then(m => m.default)
             },
@@ -108,10 +112,6 @@ export const Guide = withAnnotation({
             {
               path: 'scoped-css',
               asyncComponent: () => import('./basic/scoped-css').then(m => m.default)
-            },
-            {
-              path: 'hooks',
-              asyncComponent: () => import('./basic/hooks').then(m => m.default)
             },
             {
               path: 'global-provide',
