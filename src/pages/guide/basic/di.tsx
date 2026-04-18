@@ -36,25 +36,98 @@ export default function() {
         <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content xnote-source-code-content-highlight"><div class="xnote-source-code-line xnote-source-code-line-emphasize"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;<span class="hljs-string">'reflect-metadata'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'} createApp {'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/platform-browser'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {'{'}...{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-title function_">createApp</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>/&gt;</span></span>).<span class="hljs-title function_">mount</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'app'</span>))</span></div></pre><span class="xnote-source-code-lang">Tsx/Jsx</span>
       </div>
     </div>
+    <div data-component="HighlightBoxComponent" data-icon="❗" class="xnote-highlight-box">
+      <div class="xnote-highlight-box-left">
+        <div class="xnote-highlight-box-icon"><button type="button">❗</button></div>
+      </div>
+      <div class="xnote-highlight-box-content">
+        <div data-component="ParagraphComponent" class="xnote-paragraph">
+          <div>如果你不想使用装饰器，Viewfly 也支持通过 InjectionToken 作为 key 模拟 Vue 的 provide/inject 或 React 的 Context 的效果。</div>
+        </div>
+      </div>
+    </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>当然，如果你不想使用装饰器，Viewfly 本身也支持类似 Vue 的 provide/inject 或 React 的 Context 的效果。</div>
+      <div class="xnote-h2">核心概念</div>
+    </div>
+    <ul data-component="ListComponent" data-reorder="true" style="margin-left:0px" class="xnote-list">
+      <li>
+        <div class="xnote-list-inner">
+          <div class="xnote-list-type"><span class="xnote-order-btn">•</span></div>
+          <div class="xnote-list-content"><strong>Token</strong>：依赖的「名字」。通常是类本身，也可以是&nbsp;<code style="font-family:&quot;Microsoft YaHei Mono&quot;, Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace" class="xnote-code">InjectionToken</code>。</div>
+        </div>
+      </li>
+    </ul>
+    <ul data-component="ListComponent" data-reorder="true" style="margin-left:0px" class="xnote-list">
+      <li>
+        <div class="xnote-list-inner">
+          <div class="xnote-list-type"><span class="xnote-order-btn">•</span></div>
+          <div class="xnote-list-content"><strong>Provider</strong>：告诉容器「当有人要这个 Token 时，该怎么得到一个值」——直接给值、用类实例化、用工厂函数等。</div>
+        </div>
+      </li>
+    </ul>
+    <ul data-component="ListComponent" data-reorder="true" style="margin-left:0px" class="xnote-list">
+      <li>
+        <div class="xnote-list-inner">
+          <div class="xnote-list-type"><span class="xnote-order-btn">•</span></div>
+          <div class="xnote-list-content"><strong>Injector（注入器）</strong>：保存本层注册的 Provider，并在找不到时向<strong>父注入器</strong>继续查找。</div>
+        </div>
+      </li>
+    </ul>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div><br/></div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h1">开始</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h2"><strong style="font-size:28.8px">用 @Injectable 声明可注入服务</strong></div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>把「需要被容器管理生命周期的类」标记为可注入。可选参数&nbsp;<code style="font-family:&quot;Microsoft YaHei Mono&quot;, Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace" class="xnote-code">provideIn: 'root'</code>&nbsp;表示在根作用域注册为单例（与组件级 providers 的语义不同，见后文 Scope 一节）</div>
+    </div>
+    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
+      <div class="xnote-source-code-container hljs">
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">Injectable</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>({'{'}&nbsp;<span class="hljs-attr">provideIn</span>:&nbsp;<span class="hljs-string">'root'</span>&nbsp;{'}'})&nbsp;<span class="hljs-comment">// 可选：根级单例</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">export</span>&nbsp;<span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">Logger</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">log</span>(<span class="hljs-params">msg:&nbsp;<span class="hljs-built_in">string</span></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`[app]&nbsp;<span class="hljs-subst">${'{'}msg{'}'}</span>`</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()&nbsp;<span class="hljs-comment">// 未写 provideIn：由「就近」的 providers 提供实例</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">export</span>&nbsp;<span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">UserRepository</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-comment">// 后续在组件或 createContext 的 providers 里注册此类即可被注入</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+      </div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div><strong style="font-size:28.8px">用 providers 注册依赖</strong></div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>组件可通过&nbsp;<code style="font-family:&quot;Microsoft YaHei Mono&quot;, Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace" class="xnote-code">withAnnotation</code>&nbsp;附加元数据，其中&nbsp;<code style="font-family:&quot;Microsoft YaHei Mono&quot;, Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace" class="xnote-code">providers</code>&nbsp;会在该组件子树创建<strong>子注入器。</strong></div>
+    </div>
+    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
+      <div class="xnote-source-code-container hljs">
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;withAnnotation,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;inject,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">UserRepository</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'./user-repository'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">export</span>&nbsp;<span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">App</span>&nbsp;=&nbsp;<span class="hljs-title function_">withAnnotation</span>(</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr">providers</span>: [</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-title class_">UserRepository</span>,&nbsp;<span class="hljs-comment">// 等价于 {'{'} provide: UserRepository, useClass: UserRepository {'}'}</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;],</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'},</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment">// 函数体内用 inject() 取依赖（见下一节）</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;repo =&nbsp;<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">UserRepository</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">)</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+      </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div class="xnote-h2">应用级注入与注入器树</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>使用 viewfly({'{'} root, nativeRenderer, context {'}'}) 创建应用时，可通过可选字段 context 把已有 Injector 挂为根环境；也可在返回的 Application 实例上调用 provide(providers) 链式注册全局 Provider。组件上的 withAnnotation、createContext 会在子树创建子注入器并继承父级，从而形成自根到叶的查找链。若只关心顶层注册服务的写法，可结合本站 "全局服务" 章节阅读。</div>
+      <div>对标记了&nbsp;<code style="font-family:&quot;Microsoft YaHei Mono&quot;, Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace" class="xnote-code">@Injectable</code>&nbsp;的类，可在<strong>构造函数</strong>中声明依赖；容器会根据参数类型（需 emitDecoratorMetadata）自动解析。</div>
     </div>
     <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
       <div class="xnote-source-code-container hljs">
-        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">InjectionToken</span>, viewfly {'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// root、nativeRenderer 由具体平台包提供，此处从略</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">AppConfig</span>&nbsp;=&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">InjectionToken</span>&lt;{'{'}&nbsp;<span class="hljs-attr">apiBase</span>:&nbsp;<span class="hljs-built_in">string</span>&nbsp;{'}'}&gt;(<span class="hljs-string">'AppConfig'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// 与正文对应：返回的 Application 可在挂载前链式 provide，注册根级 Provider</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// const app = viewfly({'{'} root, nativeRenderer {'}'})</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// app.provide([{'{'} provide: AppConfig, useValue: {'{'} apiBase: '/api' {'}'} {'}'}])</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// 若已有 Injector，可通过 Config.context 接入为根环境，再与组件子注入器衔接</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// viewfly({'{'} root, nativeRenderer, context: existingInjector {'}'})</span></span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">Injectable</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">Logger</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'./logger'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">export</span>&nbsp;<span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">UserService</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-comment">// 构造注入：Logger 必须在当前注入器或其祖先上可查</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span>&nbsp;logger: Logger</span>) {'{'}{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">loadUser</span>(<span class="hljs-params">id:&nbsp;<span class="hljs-built_in">string</span></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-variable language_">this</span>.<span class="hljs-property">logger</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`load&nbsp;<span class="hljs-subst">${'{'}id{'}'}</span>`</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2">基本使用</div>
+      <div><strong style="font-size:28.8px">函数式组件里使用 inject()</strong></div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>Viewfly 提供了 withAnnotation 和 inject 两个函数，用于在组件渲染上下文中实现跨组件通讯能力。</div>
+      <div>Viewfly 的组件为函数式；在 setup 函数体内调用&nbsp;<code style="font-family:&quot;Microsoft YaHei Mono&quot;, Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace" class="xnote-code">inject(token)</code>，从<strong>当前组件</strong>的注入上下文解析依赖。这与「在构造函数里写参数」是同一套容器，只是入口 API 不同。</div>
+    </div>
+    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
+      <div class="xnote-source-code-container hljs">
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'} inject, withAnnotation {'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">UserService</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'./user-service'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">export</span>&nbsp;<span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">Profile</span>&nbsp;=&nbsp;<span class="hljs-title function_">withAnnotation</span>(</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'{'}&nbsp;<span class="hljs-attr">providers</span>: [<span class="hljs-title class_">UserService</span>] {'}'},</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">Profile</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;users =&nbsp;<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">UserService</span>)&nbsp;<span class="hljs-comment">// 与构造注入共享同一套规则</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">)</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+      </div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h2">注入普通数据</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>Viewfly 提供了 InjectionToken 来提供非 Class 的注入能力， 如果你不想使用装饰器，则完全可以用 InjectionToken 来达到类似 Vue 的 provide、inject 或 React 的 Context 的能力能力。</div>
     </div>
     <div data-lang="Tsx" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
       <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
@@ -63,25 +136,6 @@ export default function() {
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>在上面的示例中，我们通过在上层组件通过 withAnnotation 函数提供了一个 UserToken，在下层组件使用 inject 函数获取 UserToken，即获取到上层组件提供的数据。</div>
-    </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>另外，withAnnotation 为当前组件创建的注入上下文对组件自身同样生效：在 setup 函数里也可以调用 inject 读取本条 providers，用法与子组件一致，并不仅限于后代组件。</div>
-    </div>
-    <div data-lang="Tsx" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
-      <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
-        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'} inject, withAnnotation,&nbsp;<span class="hljs-title class_">InjectionToken</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">UserToken</span>&nbsp;=&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">InjectionToken</span>&lt;{'{'}&nbsp;<span class="hljs-attr">name</span>:&nbsp;<span class="hljs-built_in">string</span>&nbsp;{'}'}&gt;(<span class="hljs-string">'UserToken'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// withAnnotation 提供的注入上下文对当前组件同样可见：setup 里即可 inject，不限于子组件</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">export</span>&nbsp;<span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">App</span>&nbsp;=&nbsp;<span class="hljs-title function_">withAnnotation</span>({'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">providers</span>: [</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;{'{'}&nbsp;<span class="hljs-attr">provide</span>:&nbsp;<span class="hljs-title class_">UserToken</span>,&nbsp;<span class="hljs-attr">useValue</span>: {'{'}&nbsp;<span class="hljs-attr">name</span>:&nbsp;<span class="hljs-string">'张三'</span>&nbsp;{'}'} {'}'},</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;],</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'},&nbsp;<span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;user =&nbsp;<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">UserToken</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{'{'}user.name{'}'}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'})</span></div></pre><span class="xnote-source-code-lang">Tsx/Jsx</span>
-      </div>
-    </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>在函数组件中，inject 的签名为 inject(token, notFoundValue?, flags?)：若注入器树上找不到 token，可通过第二个参数传入默认值，避免抛错；第三个参数使用枚举 InjectFlags（如 Optional、Self、SkipSelf）控制查找边界。语义上与构造函数上的 @Optional()、@Self()、@SkipSelf() 等参数装饰器对齐——前者面向函数式 inject，后者面向基于 reflect-metadata 的类构造注入。</div>
-    </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>withAnnotation 的第一个参数在类型上为 ComponentAnnotation：常用字段是 providers（Provider 数组）以及可选的 scope（自定义 Scope）。provide、useValue、useClass、useFactory、useExisting 等字段并不出现在注解对象的顶层，而是写在 providers 数组的每一项里，用来描述某个 token 以何种方式被提供。</div>
-    </div>
-    <div data-lang="Tsx" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
-      <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
-        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">InjectionToken</span>, withAnnotation {'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">UserToken</span>&nbsp;=&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">InjectionToken</span>&lt;{'{'}&nbsp;<span class="hljs-attr">name</span>:&nbsp;<span class="hljs-built_in">string</span>&nbsp;{'}'}&gt;(<span class="hljs-string">'UserToken'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// 第一个参数类型为 ComponentAnnotation：字段是 providers（以及可选 scope），</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// provide / useValue 等写在 providers 数组的每一项里，而不是注解对象顶层</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">export</span>&nbsp;<span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">App</span>&nbsp;=&nbsp;<span class="hljs-title function_">withAnnotation</span>({'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-comment">// scope: customScope, // 可选：与 Injectable({'{'} provideIn {'}'}) 等同名 Scope 配合</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">providers</span>: [</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;{'{'}&nbsp;<span class="hljs-attr">provide</span>:&nbsp;<span class="hljs-title class_">UserToken</span>,&nbsp;<span class="hljs-attr">useValue</span>: {'{'}&nbsp;<span class="hljs-attr">name</span>:&nbsp;<span class="hljs-string">'张三'</span>&nbsp;{'}'} {'}'},</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;],</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'},&nbsp;<span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;<span class="hljs-literal">null</span>&nbsp;<span class="hljs-comment">// 返回视图，此处省略</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'})</span></div></pre><span class="xnote-source-code-lang">Tsx/Jsx</span>
-      </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>要注意的是，providers 项里的 provide 既可以是 InjectionToken，也可以是某个类（Type）或抽象类（AbstractType）作为 token。InjectionToken 在纯 JavaScript 中并非必需，但在 TypeScript 中能把字符串描述与值类型绑定起来，获得精确的类型推断；下面的示例演示如何为 UserToken 标注泛型参数。</div>
@@ -95,25 +149,31 @@ export default function() {
       <div>现在，如果我们在子组件尝试访问 user.age 时，你将会发现，TypeScript 将会抛出错误信息。</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>Viewfly 的依赖注入实现，基本和 Angular 类似，如果你有 Angular 的使用经验，你完全可以照搬原来的经验。当然，没有也没关系，Viewfly 的依赖注入 API 简单多了</div>
+      <div>Viewfly 的依赖注入实现，基本和 Angular 类似，如果你有 Angular 的使用经验，你完全可以照搬原来的经验。当然，没有也没关系，Viewfly 的依赖注入 API 简单多了。</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2">自定义上下文</div>
+      <div class="xnote-h2">createContext()</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>当需要给子组件提供服务时，可以使用 createContext 来打包成一个上下文组件，并在视图中包裹子组件即可。</div>
+    </div>
+    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
+      <div class="xnote-source-code-container hljs">
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'} createContext, inject,&nbsp;<span class="hljs-title class_">Injectable</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()&nbsp;<span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">InvoiceApi</span>&nbsp;{'{'}&nbsp;<span class="hljs-title function_">list</span>(<span class="hljs-params"></span>) {'{'}&nbsp;<span class="hljs-keyword">return</span>&nbsp;[] {'}'} {'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()&nbsp;<span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">TaxRuleEngine</span>&nbsp;{'{'} rate =&nbsp;<span class="hljs-number">0.13</span>&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">Child</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;api =&nbsp;<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">InvoiceApi</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;tax =&nbsp;<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">TaxRuleEngine</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">Parent</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">Context</span>&nbsp;=&nbsp;<span class="hljs-title function_">createContext</span>([<span class="hljs-title class_">InvoiceApi</span>,&nbsp;<span class="hljs-title class_">TaxRuleEngine</span>])</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Context</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Child</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Context</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+      </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>createContext(providers, scope?, parentInjector?) 会返回一个上下文包装组件：子树内的组件仍通过 inject 读取各项 token。第二参可传入自定义 Scope，与 Injectable({'{'} provideIn: scope {'}'}) 等作用域模型配合；第三参 parentInjector 用于把新上下文显式挂到已有注入器树上（例如单测里替换父级、或与应用的根注入器手动衔接）。</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h2">createContextProvider()</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>若更偏好小型 Provider 组件的写法，可使用 createContextProvider({'{'} provide: SomeToken {'}'}) 生成一个组件，并在 JSX 上通过 useClass、useFactory、useValue、useExisting 等属性声明提供方式，其语义与 providers 数组中的静态配置项一致。</div>
     </div>
     <div data-lang="Tsx" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
       <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
-        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'} createContext, createContextProvider,&nbsp;<span class="hljs-title class_">InjectionToken</span>,&nbsp;<span class="hljs-title class_">Scope</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">DemoToken</span>&nbsp;=&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">InjectionToken</span>&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">'DemoToken'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;demoScope =&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">Scope</span>(<span class="hljs-string">'demo-scope'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// createContext(providers, scope?, parentInjector?)：第三参把新容器挂到已有注入器树</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// const FeatureHost = createContext(</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// &nbsp;&nbsp;[{'{'} provide: DemoToken, useValue: 'hello' {'}'}],</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// &nbsp;&nbsp;demoScope,</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// &nbsp;&nbsp;parentInjector,</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// )</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// createContextProvider：生成小型 Provider 组件，JSX 上用 useValue/useClass 等与静态 providers 等价</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// const DemoProvider = createContextProvider({'{'} provide: DemoToken {'}'})</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// ;&lt;DemoProvider useValue="hello"&gt;&lt;Child /&gt;&lt;/DemoProvider&gt;</span></span></div></pre><span class="xnote-source-code-lang">Tsx/Jsx</span>
-      </div>
-    </div>
-    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
-      <div class="xnote-source-code-container hljs">
-        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">User</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;name =&nbsp;<span class="hljs-string">'张三'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">MyContext</span>&nbsp;=&nbsp;<span class="hljs-title function_">createContext</span>([{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">provide</span>:&nbsp;<span class="hljs-title class_">User</span>,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">useValue</span>:&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">User</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}])</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">Child</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;user =&nbsp;<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">User</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{'{'}user.name{'}'}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;(</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyContext</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Child</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">MyContext</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'} createContextProvider,&nbsp;<span class="hljs-title class_">InjectionToken</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">DemoToken</span>&nbsp;=&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">InjectionToken</span>&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">'DemoToken'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">Child</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;token =&nbsp;<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">DemoToken</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>{'{'}token{'}'}<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">Parent</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">ContextProvider</span>&nbsp;=&nbsp;<span class="hljs-title function_">createContextProvider</span>({'{'}<span class="hljs-attr">provider</span>:&nbsp;<span class="hljs-title class_">DemoToken</span>{'}'})</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ContextProvider</span>&nbsp;<span class="hljs-attr">useValue</span>=<span class="hljs-string">{'{'}</span>'<span class="hljs-attr">test</span>&nbsp;<span class="hljs-attr">demo</span>&nbsp;<span class="hljs-attr">token</span>'{'}'}&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Child</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ContextProvider</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div></pre><span class="xnote-source-code-lang">Tsx/Jsx</span>
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
@@ -128,26 +188,34 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2">Injectable()</div>
+      <div class="xnote-h1">Injectable 详解</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>常见的依赖注入，往往是基于 Class 的，我们可以通过 Injectable 装饰器，把一个类标记为可注入的，即可使用 Viewfly 自动管理依赖和自动实例化的能力。</div>
+      <div>前面我们看到了 Injectable 装饰器的常见用法。它还可以支持添加 provideIn 配置，来定制上下文提供的位置。</div>
     </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>@Injectable 还可传入配置对象：provideIn: 'root' 表示在根注入器注册为单例；provideIn 传入 Scope 实例时，可与 withAnnotation({'{'} scope {'}'}) 或 createContext(..., scope) 使用同一 Scope 名义，在异步场景按作用域把类挂到指定父容器（与文末 "容器作用域" 一节呼应）。不传 provideIn 时，由就近的 providers 列表负责提供实例。</div>
-    </div>
+    <ol data-component="ListComponent" data-reorder="true" style="margin-left:0px" class="xnote-list">
+      <li>
+        <div class="xnote-list-inner">
+          <div class="xnote-list-type"><span class="xnote-order-btn">1.</span></div>
+          <div class="xnote-list-content">传入配置对象：provideIn: 'root' 表示在根注入器注册为单例；</div>
+        </div>
+      </li>
+    </ol>
+    <ol data-component="ListComponent" data-reorder="false" style="margin-left:0px" class="xnote-list">
+      <li>
+        <div class="xnote-list-inner">
+          <div class="xnote-list-type"><span class="xnote-order-btn">2.</span></div>
+          <div class="xnote-list-content">provideIn 传入 Scope 实例时，可与 withAnnotation({'{'} scope {'}'}) 或 createContext(..., scope) 使用同一 Scope 名义，在异步场景按作用域把类挂到指定父容器（与文末 "容器作用域" 一节呼应）。不传 provideIn 时，由就近的 providers 列表负责提供实例。</div>
+        </div>
+      </li>
+    </ol>
     <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
       <div class="xnote-source-code-container hljs">
-        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">Injectable</span>,&nbsp;<span class="hljs-title class_">Scope</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;featureScope =&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">Scope</span>(<span class="hljs-string">'feature'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// provideIn: 'root' — 在根注入器注册单例，全局共享</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>({'{'}&nbsp;<span class="hljs-attr">provideIn</span>:&nbsp;<span class="hljs-string">'root'</span>&nbsp;{'}'})</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">Telemetry</span>&nbsp;{'{'}{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// provideIn 传入 Scope — 与 withAnnotation({'{'} scope {'}'}) / createContext(..., scope) 对齐</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>({'{'}&nbsp;<span class="hljs-attr">provideIn</span>: featureScope {'}'})</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">FeatureStore</span>&nbsp;{'{'}{'}'}</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
-      </div>
-    </div>
-    <div data-lang="Tsx" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
-      <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
-        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">Injectable</span>, withAnnotation, inject {'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// 声明类是可注入的</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">ChildService</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;name =&nbsp;<span class="hljs-string">'child'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">index</span>:&nbsp;<span class="hljs-built_in">number</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {'{'}{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// 声明类是可注入的</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">ParentSerivce</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;name =&nbsp;<span class="hljs-string">'parent'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span>&nbsp;child: ChildService</span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">function</span>&nbsp;<span class="hljs-title function_">Child</span>(<span class="hljs-params"></span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">const</span>&nbsp;parentService =&nbsp;<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">ParentSerivce</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(parentService.<span class="hljs-property">name</span>)&nbsp;<span class="hljs-comment">// parent</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(parentService.<span class="hljs-property">child</span>.<span class="hljs-property">name</span>)&nbsp;<span class="hljs-comment">// child</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{'{'}parentService.name{'}'}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">App</span>&nbsp;=&nbsp;<span class="hljs-title function_">withAnnotation</span>({'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">providers</span>: [</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-title class_">ParentSerivce</span>,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-title class_">ChildService</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;]</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'},&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword">return</span>&nbsp;(</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-tag">&lt;<span class="hljs-name">Child</span>/&gt;</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="language-xml">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'})</span></div></pre><span class="xnote-source-code-lang">Tsx/Jsx</span>
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">Injectable</span>,&nbsp;<span class="hljs-title class_">Scope</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// provideIn: 'root' — 在根注入器注册单例，全局共享</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>({'{'}&nbsp;<span class="hljs-attr">provideIn</span>:&nbsp;<span class="hljs-string">'root'</span>&nbsp;{'}'})</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">Telemetry</span>&nbsp;{'{'}{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// provideIn 传入 Scope — 与 withAnnotation({'{'} scope {'}'}) / createContext(..., scope) 对齐</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;featureScope =&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">Scope</span>(<span class="hljs-string">'feature'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>({'{'}&nbsp;<span class="hljs-attr">provideIn</span>: featureScope {'}'})</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">FeatureStore</span>&nbsp;{'{'}{'}'}</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>在上面的示例中，我们发现我们并没有实例化 ParentService 和 ChildService，但我们在 Child 组件却可以正常访问 ParentService 和 ChildService 的实例。这是 Viewfly 实现的。你无需关心这个过程是怎样发生的。只需要声明式的在构造函数中，声明依赖即可。</div>
+      <div>在上面所有的示例中，我们发现我们并没有实例化任何一个类，但我们在组件内却可以正常访问这些类的实例。这是 Viewfly 实现的。你无需关心这个过程是怎样发生的。只需要声明式的在构造函数中，声明依赖即可。</div>
     </div>
     <div data-component="HighlightBoxComponent" data-icon="❗" class="xnote-highlight-box">
       <div class="xnote-highlight-box-left">
@@ -160,7 +228,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2">Provider 示例</div>
+      <div class="xnote-h1">Provider 示例</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>在上面的示例中，我们看到了我们不但可以注入类的实例，也可以通过 useValue 的方式，直接注入一个值，这叫做 ValueProvider。除此之外，还可使用 useClass、useFactory、useExisting，以及直接把可注入类写进 providers 数组（类型上的 TypeProvider）。其中 useExisting 让新的 token 复用已有 token 解析出的同一实例，适合 "别名导出接口" 而不想再 new 一份的场景。</div>
@@ -171,7 +239,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">useValue</div>
+      <div class="xnote-h2">useValue</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>ValueProvider 可以让我们把任意值注入到类中，常用在一些全局配置对象，或需要注入非类实例的对象或数据的场景。</div>
@@ -182,7 +250,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">classProvider</div>
+      <div class="xnote-h2">classProvider</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>classProvider 可以让我们用一个类来替换另一个类，通常是原程序的注入参数依赖于一个抽象类，再由我们提供一个实现类去实现具体的逻辑和功能。</div>
@@ -198,7 +266,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">useFactory</div>
+      <div class="xnote-h2">useFactory</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>FactoryProvider 可以让我们使用一个函数的返回值当作注入参数，注入到类中。</div>
@@ -217,7 +285,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">useExisting</div>
+      <div class="xnote-h2">useExisting</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>当多个 token 需要指向同一运行时实例时，可使用 {'{'} provide: NewToken, useExisting: OldToken {'}'}。注入器在解析 NewToken 时会转去解析 OldToken，不会再次执行构造函数或工厂，因此适合在接口层与实现层各用一个 InjectionToken、却共享单例的场景。</div>
@@ -228,7 +296,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">直接把类放进 providers</div>
+      <div class="xnote-h2">直接把类放进 providers</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>providers 数组除了对象字面量，还可以直接写 @Injectable() class Http {'{'}{'}'} 这类类型本身。它等价于 "由该类既作为 token 又作为实现" 的 ConstructorProvider 简写，注入器会按构造函数元数据解析依赖；若构造函数参数无法仅靠类型推断（例如接口、联合类型），仍需配合 @Inject(...) 或手工 deps。</div>
@@ -239,24 +307,13 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2">如何注入其它数据</div>
-    </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>在实际应用中，很多时候不仅仅只需要注入类的实例，可能还需要注入其它数据，但通过 Typescript 自动解析元数据，是无法获取到相关依赖信息的。这时，就需要通过指定 token 的方式实现。</div>
-    </div>
-    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
-      <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
-        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">Injectable</span>,&nbsp;<span class="hljs-title class_">InjectionToken</span>,&nbsp;<span class="hljs-title class_">Inject</span>, withAnnotation {'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span>;</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">interface</span>&nbsp;<span class="hljs-title class_">UserInfo</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">name</span>:&nbsp;<span class="hljs-built_in">string</span>;</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">UserInfoInjectionToken</span>&nbsp;=&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">InjectionToken</span>&lt;<span class="hljs-title class_">UserInfo</span>&gt;(<span class="hljs-string">'UserInfoInjectionToken'</span>);</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">User</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-meta">@Inject</span>(UserInfoInjectionToken)&nbsp;<span class="hljs-keyword">public</span>&nbsp;userInfo: UserInfo</span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">App</span>&nbsp;=&nbsp;<span class="hljs-title function_">withAnnotation</span>({'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-attr">providers</span>: [</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-title class_">User</span>,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr">provide</span>:&nbsp;<span class="hljs-title class_">UserInfoInjectionToken</span>,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr">useValue</span>: {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr">name</span>:&nbsp;<span class="hljs-string">'张三'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;]</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'},&nbsp;<span class="hljs-function">() =&gt;</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;...</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'})</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
-      </div>
-    </div>
-    <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2">依赖注入规则声明</div>
+      <div class="xnote-h1">依赖注入规则声明</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>我们除了可以在类的构造函数中，注入一个另一个类，我们还可以同时声明，让注入器按照一定的规则来注入，以适应更多的场景。</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">Optional</div>
+      <div class="xnote-h2">Optional</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>如果我们的注入参数是可选的，我们可以声明 Optional 来让注入器在注入器树上找不到相关依赖时，并不抛出异常，而是注入一个 null。</div>
@@ -270,7 +327,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">Self</div>
+      <div class="xnote-h2">Self</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>由于注入器是根据就近原则，依次在注入器树上查找相关类实例的，如果我们想要注入器在查找时，锁定在当前容器内查找，则可以通过 Self 装饰器来声明：</div>
@@ -281,7 +338,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">SkipSelf</div>
+      <div class="xnote-h2">SkipSelf</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>当然，如果查找时，你不想从当前容器内查找，而是想要从上一层容器开始查找，则可以通过 SkipSelf 装饰器来声明：</div>
@@ -292,7 +349,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">Inject</div>
+      <div class="xnote-h2">Inject</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>你还可以通过 Inject 装饰器指定注入 token，而不是通过参数类型。</div>
@@ -307,17 +364,31 @@ export default function() {
     </div>
     <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
       <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
-        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">Example</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-meta">@Inject</span>(forwardRef(() =&gt; Http))&nbsp;<span class="hljs-keyword">private</span>&nbsp;http: Http</span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">Example</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-meta">@Inject</span>(forwardRef(() =&gt; Http))&nbsp;<span class="hljs-keyword">private</span>&nbsp;http: Http</span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+      </div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>Inject 还可以显式指定用哪个 Token（当类型与 Token 不一致时）。</div>
+    </div>
+    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
+      <div class="xnote-source-code-container hljs">
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">Inject</span>,&nbsp;<span class="hljs-title class_">Optional</span>,&nbsp;<span class="hljs-title class_">Injectable</span>,&nbsp;<span class="hljs-title class_">InjectionToken</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;<span class="hljs-variable constant_">THEME</span>&nbsp;=&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">InjectionToken</span>&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">'THEME'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">ThemedService</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-meta">@Optional</span>()&nbsp;<span class="hljs-meta">@Inject</span>(THEME)&nbsp;<span class="hljs-keyword">readonly</span>&nbsp;theme:&nbsp;<span class="hljs-built_in">string</span>&nbsp;|&nbsp;<span class="hljs-literal">null</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-params">&nbsp;&nbsp;</span>) {'{'}{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>需要说明的是，你可以自由组合上面的装饰器。而不仅限于一个。</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2">forwardRef、Prop 与函数式 inject（进阶）</div>
+      <div><br/></div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">forwardRef 解决后声明类与循环依赖</div>
+      <div class="xnote-h1">forwardRef、Prop 与函数式 inject 进阶</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h2">forwardRef&nbsp;</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>forwardRef 用于解决后声明类与循环依赖。</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>当两个类在模块顶层互相引用，或 Http 类定义在 Example 之后，导致元数据收集阶段拿不到真实构造函数时，可在 @Inject 中包一层 forwardRef(() =&gt; Http)。注入器会在真正实例化时再解析目标，从而打破 "先引用、后声明" 的死锁；若存在 A 依赖 B、B 又依赖 A 的环形结构，同样需要用 forwardRef 让其中一侧延迟解析，避免 undefined 被当作实现。</div>
@@ -328,7 +399,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">Prop 属性注入</div>
+      <div class="xnote-h2">Prop 属性注入</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>除构造函数外，@viewfly/core 还提供 Prop(token?, notFoundValue?, flags?) 属性装饰器，用于在类的字段上声明注入点。典型用途是：想把依赖存成实例属性、或构造函数参数已经较多、不便继续追加时，可把 HttpClient 等依赖声明在字段上，由同一套 ReflectiveInjector 在实例化后写入。token 省略时默认按属性类型推断，也可显式传入 InjectionToken 或 forwardRef。</div>
@@ -339,10 +410,37 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">函数式 inject 与构造注入如何选</div>
+      <div class="xnote-h2">函数式 inject 与构造注入的异同</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div>函数组件没有构造函数，跨层级读取上下文应使用 inject；需要 "未找到则 undefined" 时传 notFoundValue 或 InjectFlags.Optional，等价于 @Optional()。需要只查当前子注入器时传 Self，等价于 @Self()；要从父级开始跳过本级时传 SkipSelf，等价于 @SkipSelf()。类服务内部若仍使用构造函数注入，则继续用装饰器组合；若某段逻辑拆成纯函数或组合式 API，则优先 inject，避免把 IoC 与 UI 生命周期绑得过死。</div>
+      <div>函数组件没有构造函数，跨层级读取上下文应使用 inject 函数。</div>
+    </div>
+    <ol data-component="ListComponent" data-reorder="true" style="margin-left:0px" class="xnote-list">
+      <li>
+        <div class="xnote-list-inner">
+          <div class="xnote-list-type"><span class="xnote-order-btn">1.</span></div>
+          <div class="xnote-list-content">当注入值为可选时，需要在第二个参数传入默认值，等价于构造函数注入的参数装饰器 @Optional()。</div>
+        </div>
+      </li>
+    </ol>
+    <ol data-component="ListComponent" data-reorder="false" style="margin-left:0px" class="xnote-list">
+      <li>
+        <div class="xnote-list-inner">
+          <div class="xnote-list-type"><span class="xnote-order-btn">2.</span></div>
+          <div class="xnote-list-content">当需要只查当前子注入器时传 Self，等价于 @Self()。</div>
+        </div>
+      </li>
+    </ol>
+    <ol data-component="ListComponent" data-reorder="false" style="margin-left:0px" class="xnote-list">
+      <li>
+        <div class="xnote-list-inner">
+          <div class="xnote-list-type"><span class="xnote-order-btn">3.</span></div>
+          <div class="xnote-list-content">要从父级开始跳过本级时传 SkipSelf，等价于 @SkipSelf()。</div>
+        </div>
+      </li>
+    </ol>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>而类服务内部则应该使用构造函数注入或 @Prop() 注入。</div>
     </div>
     <div data-lang="Tsx" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
       <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
@@ -350,7 +448,10 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2">deps 参数详解</div>
+      <div><br/></div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h1">deps 参数详解</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>在上面的示例中，我们看到了在使用 FactoryProvider 时，可以用 deps 声明依赖参数。实际上，在 ClassProvider、ConstructorProvider 中，一样可以使用 deps 声明依赖参数，只不过，当你不声明时，注入器会根据 ClassProvider 和 ConstructorProvider 的元数据，自动帮我们做了。</div>
@@ -359,7 +460,7 @@ export default function() {
       <div>由于 useFactory 是一个工厂函数，注入器并不能获取到其参数的依赖元数据，所以，当使用 useFactory 时，如果我们想有参数，我们是一定要声明依赖参数的。</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">一般场景下的依赖声明</div>
+      <div class="xnote-h2">一般场景下的依赖声明</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>普通类声明</div>
@@ -378,7 +479,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h3">定制参数的查询规则</div>
+      <div class="xnote-h2">定制参数的查询规则</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>当参数可选时</div>
@@ -417,11 +518,14 @@ export default function() {
     </div>
     <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="true" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
       <div class="xnote-source-code-container hljs xnote-source-code-auto-break">
-        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;injector =&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">ReflectiveInjector</span>(parentInjector, [</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr">provide</span>:&nbsp;<span class="hljs-title class_">Example</span>,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-title function_">useFactory</span>(<span class="hljs-params">http: Http</span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;{'}'},</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr">deps</span>: [</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">Optional</span>(),&nbsp;<span class="hljs-title class_">Http</span>,&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">SkipSelf</span>(), ]&nbsp;<span class="hljs-comment">// 多个规则，且顺序无关</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;]</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">])</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;injector =&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">ReflectiveInjector</span>(parentInjector, [</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr">provide</span>:&nbsp;<span class="hljs-title class_">Example</span>,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-title function_">useFactory</span>(<span class="hljs-params">http: Http</span>) {'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;{'}'},</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-attr">deps</span>: [</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">Optional</span>(),&nbsp;<span class="hljs-title class_">Http</span>,&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">SkipSelf</span>(), ]&nbsp;<span class="hljs-comment">// 多个规则，且顺序无关</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;&nbsp;&nbsp;]</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">])</span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2">Injector.get</div>
+      <div><br/></div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h1">Injector.get</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>在获取实例时，我们会通过 injector.get 方法获取，如下：</div>
@@ -459,7 +563,7 @@ export default function() {
       </div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
-      <div class="xnote-h2">容器作用域</div>
+      <div class="xnote-h1">容器作用域</div>
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>在异步场景中，如果我们不想异步的类提前在容器内声明，可以通过 scope 的方式异步提供到指定容器。</div>
@@ -492,6 +596,41 @@ export default function() {
     </div>
     <div data-component="ParagraphComponent" class="xnote-paragraph">
       <div>由于 Example 类的装饰器中，我们提供了 provideIn 的作用域声明。所以在异步的容器中，我们可以不在当前容器内再次声明。在调用异步容器的 get 方法时，会自动把 Example 类添加到声明了相同作用域的父容器内。 需要注意的是，查找还是按照就近原则，如果在当前容器到声明了 scope 的容器的注入器树之间提供了声明了相同的 provide，那么，你得到实例的将不是 scope 容器内的实例，而是最近的那一个。</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div><br/></div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h1">常见问题</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h3">useExisting 有什么用</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>典型需求如：遗留代码依赖抽象 Token&nbsp;<code style="font-family:&quot;Microsoft YaHei Mono&quot;, Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace" class="xnote-code">IApiClient</code>，新模块统一用具体类&nbsp;<code style="font-family:&quot;Microsoft YaHei Mono&quot;, Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace" class="xnote-code">HttpClient</code>。用&nbsp;<code style="font-family:&quot;Microsoft YaHei Mono&quot;, Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace" class="xnote-code">useExisting</code>&nbsp;可以把新 Token 指到已有实现，<strong>不会多执行一次构造函数</strong>，适合「别名导出」与渐进迁移。</div>
+    </div>
+    <div data-lang="TypeScript" data-component="SourceCodeComponent" data-auto-break="false" data-theme="xnote-dark" data-line-number="true" class="xnote-source-code xnote-source-code-line-number xnote-dark">
+      <div class="xnote-source-code-container hljs">
+        <div style="width:2.5em" class="xnote-source-code-line-number-bg"></div><pre style="padding-left:2.5em;margin-left:-2.5em" class="xnote-source-code-content"><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">import</span>&nbsp;{'{'}&nbsp;<span class="hljs-title class_">InjectionToken</span>,&nbsp;<span class="hljs-title class_">Injectable</span>,&nbsp;<span class="hljs-title class_">ReflectiveInjector</span>&nbsp;{'}'}&nbsp;<span class="hljs-keyword">from</span>&nbsp;<span class="hljs-string">'@viewfly/core'</span></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">export</span>&nbsp;<span class="hljs-keyword">const</span>&nbsp;<span class="hljs-title class_">IApiClient</span>&nbsp;=&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">InjectionToken</span>&lt;<span class="hljs-title class_">HttpClient</span>&gt;(<span class="hljs-string">'IApiClient'</span>)</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-meta">@Injectable</span>()</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">export</span>&nbsp;<span class="hljs-keyword">class</span>&nbsp;<span class="hljs-title class_">HttpClient</span>&nbsp;{'{'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title function_">get</span>(<span class="hljs-params">path:&nbsp;<span class="hljs-built_in">string</span></span>) {'{'}&nbsp;<span class="hljs-keyword">return</span>&nbsp;<span class="hljs-title function_">fetch</span>(path) {'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">{'}'}</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><br/></span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-keyword">const</span>&nbsp;injector =&nbsp;<span class="hljs-keyword">new</span>&nbsp;<span class="hljs-title class_">ReflectiveInjector</span>(<span class="hljs-literal">null</span>, [</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;<span class="hljs-title class_">HttpClient</span>,</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">&nbsp;&nbsp;{'{'}&nbsp;<span class="hljs-attr">provide</span>:&nbsp;<span class="hljs-title class_">IApiClient</span>,&nbsp;<span class="hljs-attr">useExisting</span>:&nbsp;<span class="hljs-title class_">HttpClient</span>&nbsp;{'}'},</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content">])</span></div><div class="xnote-source-code-line"><span class="xnote-source-code-line-content"><span class="hljs-comment">// injector.get(IApiClient) === injector.get(HttpClient)</span></span></div></pre><span class="xnote-source-code-lang">TypeScript</span>
+      </div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h3">useClass：Token 与实现各有一份单例</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>若写成 {'{'} provide: IRequestSigner, useClass: HmacSigner {'}'} 且同时 provide 了 HmacSigner，容器会为两个 Token 各维护一份缓存：inject(IRequestSigner) 与 inject(HmacSigner) 往往是两个不同对象。若你本意是「只 new 一次」，应改用上一节的 useExisting，或只保留一个 Token</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h3">同名 Token 多层注册：永远取「离自己最近」的一层</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>例如根上 provide 了默认的 AuditLogger（写控制台），某「合规专区」子树再 provide 写远程日志的实现。该子树内任意服务 inject(AuditLogger) 都会命中专区实现；壳层其它区域仍用默认实现。这不是 bug，而是覆盖语义；若出现「以为用的是全局单例，实际被子树换掉」的困惑，请回到上一节的组件树示意图排查。</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div class="xnote-h3">渲染与响应式</div>
+    </div>
+    <div data-component="ParagraphComponent" class="xnote-paragraph">
+      <div>Viewfly 不会因为 provide / inject 得到的普通对象属性变化而自动重渲染。视图更新仍主要依赖你在模板中使用的 Signal、Reactive 等响应式机制。若把可变状态放在服务里，请通过 Signal 或触发组件标记更新的方式对接 UI。</div>
     </div>
   </div>
 </div></div>
