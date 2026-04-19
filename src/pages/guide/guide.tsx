@@ -43,7 +43,7 @@ export const Guide = withAnnotation({
                 <Link to="./router" active="active">路由</Link>
               </li>
               <li>
-                <Link to="./portal" active="active">自由节点</Link>
+                <Link to="./portal" active="active">自由节点 Portal</Link>
               </li>
               <li>
                 <Link to="./scoped-css" active="active">模块化 CSS</Link>
