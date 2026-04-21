@@ -58,7 +58,8 @@ export const Guide = withAnnotation({
             <h3>工具</h3>
             <ul>
               <li>
-                <Link to="./cli" active="active">脚手架 <i class="tag">dev</i></Link>
+                {/*<Link to="./cli" active="active">脚手架 <i class="tag">dev</i></Link>*/}
+                <Link to="./cli" active="active">脚手架</Link>
               </li>
             </ul>
             <h3>高级</h3>
